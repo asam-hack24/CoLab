@@ -3,6 +3,7 @@ html {
 }
 body {
   min-height: 100%;
+  overflow-y: hidden;
 }
 .panel-body{
 	max-height: 500px;
@@ -65,8 +66,8 @@ p {
 
 .bubble {
   float: left;
-  width: auto;
-  max-width: 80%;
+  width: 100%;
+  max-width: 100%;
   position: relative;
   clear: both;
   background: #95c2fd;
@@ -120,7 +121,7 @@ p {
 
 .chat-control {
   padding: 1.2em;
-  margin-top: 495px;
+  margin-top: 430px;
 }
 
 .chat-input {
