@@ -43,8 +43,26 @@
                       temp.nextAll('.editor-input').removeClass('active').addClass('hidechat');*/
         });
         
+    CodeMirror.fromTextArea(document.getElementById("editor1-textarea"), {
+            mode: {name: "stex",
+                   version: 3,
+                   singleLineStringErrors: false},
+            lineNumbers: false,
+            indentUnit: 4,
+            matchBrackets: true
+        });
+        
     CodeMirror.fromTextArea(document.getElementById("editor2-textarea"), {
             mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true
+        });
+        
+    CodeMirror.fromTextArea(document.getElementById("editor3-textarea"), {
+            mode: {name: "r",
                    version: 3,
                    singleLineStringErrors: false},
             lineNumbers: true,
