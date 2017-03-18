@@ -5,6 +5,8 @@ from kafka import KafkaProducer
 from app.streaming.avroserialiser import AvroSerialiser
 from app.streaming.avrodeserialiser import AvroDeserialiser
 from time import sleep
+from app.messages.message_text import TextMessage
+from datetime import datetime
 
 
 @app.route('/')
@@ -44,7 +46,11 @@ def get_messages():
 
 @app.route('/send', methods=['POST'])
 def send():
-    print(request.form['message'])
-    buffer = serialiser.serialise(raw_text=request.form['message'])
+    new_message = None
+    if request.form['type'] == 'text':
+        new_message = TextMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
+    else:
+        raise ValueError('Unrecognised message type in views.py send()')
+    buffer = serialiser.serialise_message(new_message)
     producer.send('test_avro_topic', buffer)
     return ""
