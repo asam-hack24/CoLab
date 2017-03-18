@@ -19,14 +19,14 @@ class AvroSerialise:
     def __init__(self):
         pass
 
-    def serialise(self, message=''):
+    def serialise(self, text=''):
         """Generate a unique id for the message and serialise it"""
         buffer = io.BytesIO()
         writer(buffer, self.schema, [{'id': uuid.uuid4().int,
                                       'author': 'Bob',
                                       'type': 'text',
-                                      'text': message,
-                                      'html': message}])
+                                      'text': text,
+                                      'html': text}])
         return buffer.getvalue()
 
     def deserialise(self, buffer):

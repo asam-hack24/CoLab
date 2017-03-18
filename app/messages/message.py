@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
+from app.streaming.avroserialise import AvroSerialise
 
 
 class Author:
@@ -26,6 +27,8 @@ class Message(metaclass=ABCMeta):
         self._time_last_modified = time_last_modified
         self._message = message
         self._html_message = None
+
+        self._serializer = AvroSerialise()
 
     @abstractmethod
     def serialize(self):

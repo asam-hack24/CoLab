@@ -8,7 +8,7 @@ class TextMessage(Message):
                                           message=message)
 
     def serialize(self):
-        pass
+        return self._serializer.serialise(text=self._message)
 
     def _do_deserialize(self, message):
         pass
