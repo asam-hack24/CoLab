@@ -1,4 +1,5 @@
 from app.messages.message import (Message, MessageType)
+from app.script_execution.python_executor import PythonExecutor
 
 
 class PythonMessage(Message):
@@ -12,4 +13,6 @@ class PythonMessage(Message):
         pass
 
     def _do_create_html_message(self):
-        raise RuntimeError()
+        executor = PythonExecutor()
+        raw_message = self.get_raw_message()
+        return executor.execute(raw_message)
