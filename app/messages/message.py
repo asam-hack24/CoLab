@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
-from app.streaming.avroserialise import AvroSerialise
+from app.streaming.avroserialiser import AvroSerialiser
 from enum import Enum
 
 
@@ -23,10 +23,10 @@ class Message(metaclass=ABCMeta):
             raise ValueError("time_stamp: Expected a datetime object, got {}".format(type(time_created)))
         if not isinstance(time_last_modified, datetime):
             raise ValueError("last_modified: Expected a datetime object, got {}".format(type(time_last_modified)))
-        if not isinstance(author, Author):
-            raise ValueError("author: Expected an Author object, got {}".format(type(author)))
-        if not isinstance(last_author, Author):
-            raise ValueError("last_author: Expected an Author object, got {}".format(type(last_author)))
+        #if not isinstance(author, Author):
+        #    raise ValueError("author: Expected an Author object, got {}".format(type(author)))
+        #if not isinstance(last_author, Author):
+        #    raise ValueError("last_author: Expected an Author object, got {}".format(type(last_author)))
 
         self._author = author
         self._last_author = last_author
@@ -35,7 +35,7 @@ class Message(metaclass=ABCMeta):
         self._message = message
         self._html_message = None
         self._message_type = None
-        self._serializer = AvroSerialise()
+        self._serializer = AvroSerialiser()
 
     @abstractmethod
     def serialize(self):
