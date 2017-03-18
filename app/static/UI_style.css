@@ -30,8 +30,13 @@ body {
   padding: 0;
 }*/
 
+.btn{
+ position: absolute;
+ right: 0;
+}
+
 body {
-  background: #DFDFEF;
+  background: silver;
   font-family: 'Helvetica Neue';
   font-size: 10px;
   color: #414141;
@@ -40,7 +45,7 @@ body {
 }
 
 .chat-box {
-  background: linear-gradient(0deg, #1E2C3D 00%, #3E364E 100%);
+  background-color: black;
  /*margin: 100px auto;
   max-width: 500px;
   height: 650px;*/
