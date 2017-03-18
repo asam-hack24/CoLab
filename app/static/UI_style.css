@@ -46,7 +46,7 @@ body {
   height: 650px;*/
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   /*border : 1px solid #000;*/
-  overflow-y: scroll;
+  overflow-y: hidden;
   position: relative;
   transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
