@@ -1,3 +1,7 @@
 Flask>=0.12
 fastavro
 kafka
+nbconvert
+jupyter
+numpy
+matplotlib
