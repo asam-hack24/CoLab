@@ -2,6 +2,7 @@ from app import app
 from flask import Flask, session, redirect, url_for, escape, request, Response, render_template
 from kafka import KafkaConsumer
 from app.streaming.avrodeserialiser import AvroDeserialiser
+from time import sleep
 
 
 @app.route('/')
@@ -24,6 +25,7 @@ deserialiser = AvroDeserialiser()
 def get_messages():
     if request.headers.get('accept') == 'text/event-stream':
         def script():
+            sleep(0.1)  # this fixes missing messages, don't remove
             partitions = consumer.poll(timeout_ms=100, max_records=5)
             if len(partitions) > 0:
                 for p in partitions:
