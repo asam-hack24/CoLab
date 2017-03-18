@@ -23,6 +23,9 @@ class AvroSerialise:
         """Generate a unique id for the message and serialise it"""
         buffer = io.BytesIO()
         writer(buffer, self.schema, [{'id': uuid.uuid4().int,
+                                      'author': 'Bob',
+                                      'type': 'text',
+                                      'text': message,
                                       'html': message}])
         return buffer.getvalue()
 
