@@ -10,23 +10,16 @@ class MessageType(Enum):
     R = 3
 
 
-class Author:
-    def __init__(self, first_name, last_name, author_id):
-        self._first_name = first_name
-        self._last_name = last_name
-        self._author_id = author_id
-
-
 class Message(metaclass=ABCMeta):
     def __init__(self, author, last_author, time_created, time_last_modified, message):
         if not isinstance(time_created, datetime):
             raise ValueError("time_stamp: Expected a datetime object, got {}".format(type(time_created)))
         if not isinstance(time_last_modified, datetime):
             raise ValueError("last_modified: Expected a datetime object, got {}".format(type(time_last_modified)))
-        #if not isinstance(author, Author):
-        #    raise ValueError("author: Expected an Author object, got {}".format(type(author)))
-        #if not isinstance(last_author, Author):
-        #    raise ValueError("last_author: Expected an Author object, got {}".format(type(last_author)))
+        if not isinstance(author, str):
+            raise ValueError("author: Expected a string, got {}".format(type(author)))
+        if not isinstance(last_author, str):
+            raise ValueError("last_author: Expected a string, got {}".format(type(last_author)))
 
         self._author = author
         self._last_author = last_author
@@ -64,3 +57,6 @@ class Message(metaclass=ABCMeta):
 
     def get_message_type(self):
         return self._message_type
+
+    def get_raw_message(self):
+        return self._message
