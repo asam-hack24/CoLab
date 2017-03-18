@@ -1,8 +1,41 @@
-<HTML>
-<HEAD>
-<TITLE>Hello World in HTML</TITLE>
-</HEAD>
-<BODY>
-<CENTER><H1>Hello World!</H1></CENTER>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Messages</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <script>
+    if (!!window.EventSource) {
+        var source = new EventSource('/get_messages');
+        source.onmessage = function(e) {
+            var m = $("#messages");
+            if (m.text() == 'nothing received yet')
+                m.html("<div>" + e.data + "</div>");
+            else
+                m.append("<div>" + e.data + "</div>");
+             
+             //Needed because MathJax only formats on page load   
+             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
+        }
+        source.onopen = function(e) {
+            console.log('onopen');
+        }
+    }
+    </script>
+  </head>
+  <body>
+    <div>Some math $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</div>
+    <div id="messages">nothing received yet</div>
+    
+    <form id="message-form">
+        <input type="text" name="message"/>
+        <input type="submit"/>
+    </form>
+    
+  <script>
+        $( "#message-form" ).submit(function( event ) {
+          event.preventDefault();
+          $.post( "/send", $("#message-form").serialize() );
+        });
+  </script>
+  </body>
+</html>
