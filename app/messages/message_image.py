@@ -5,7 +5,10 @@ import os
 
 class ImageMessage(Message):
     def __init__(self, author, last_author, time_created, time_last_modified, message):
-        message_blob = ImageMessage._convert_to_blob(message)
+        if isinstance(message,str):
+            message_blob = ImageMessage._convert_to_blob(message)
+        else:
+            message_blob = message
         super(ImageMessage, self).__init__(author=author, last_author=last_author,
                                            time_created=time_created, time_last_modified=time_last_modified,
                                            message=message_blob)

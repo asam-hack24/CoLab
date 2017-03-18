@@ -9,6 +9,7 @@ from app.messages.message_text import TextMessage
 from app.messages.message_python import PythonMessage
 from app.messages.message_r import RMessage
 from datetime import datetime
+import io
 
 
 @app.route('/')
@@ -58,4 +59,27 @@ def send():
         raise ValueError('Unrecognised message type in views.py send()')
     buffer = new_message.serialize()
     producer.send('test_avro_topic', buffer)
+    return ""
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    print("WAS HERE")
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            print('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            print('No selected file')
+            return ''
+
+        # Write the buffer
+        buffer = io.BytesIO()
+        file.save(dst=buffer)
+        print(buffer.getvalue())
+
     return ""
