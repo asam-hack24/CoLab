@@ -8,6 +8,7 @@ class MessageType(Enum):
     TEXT = 1
     PYTHON = 2
     R = 3
+    IMAGE = 4
 
 
 class Message(metaclass=ABCMeta):
