@@ -13,14 +13,17 @@ body {
 
 
 
-.container-fluid{
+.container-fluid, .row , .panel, .col-md-6{
     height:100%;
 }
 
-.row , .panel {
-    height:100%;
+.chat-header{
+    height:10%;
 }
 
+.chat-box{
+    height:90%;
+}
 /*
 * {
   margin: 0;
@@ -227,4 +230,3 @@ p {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
-
