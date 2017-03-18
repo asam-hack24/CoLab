@@ -56,6 +56,6 @@ def send():
         new_message = RMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
     else:
         raise ValueError('Unrecognised message type in views.py send()')
-    buffer = serialiser.serialise_message(new_message)
+    buffer = new_message.serialize()
     producer.send('test_avro_topic', buffer)
     return ""

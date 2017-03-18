@@ -9,7 +9,7 @@ class RMessage(Message):
         self._message_type = MessageType.R
 
     def serialize(self):
-        pass
+        return self._serializer.serialise_message(self)
 
     def _do_create_html_message(self):
         raise RuntimeError()

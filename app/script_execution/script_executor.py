@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 from nbconvert import HTMLExporter
-import os
 
 
 class ScriptExecutor(metaclass=ABCMeta):
@@ -11,39 +10,23 @@ class ScriptExecutor(metaclass=ABCMeta):
         pass
 
     def do_execute(self, script, kernel, timeout=600):
-        # Steps for script export the execution
-        # 1. Save script to ipython notebook file
-        # 2. Read it back in with nb format
-        # 3. Execute the script with the correct kernel
-        # 4. Export html from the notebook
-        # 5. Extract the result from the html
-
-        # Save to script
-        notebook_filename = 'script_to_execute.ipynb'
-        path_to_module = os.path.abspath(__file__)
-        full_file_name = os.path.join(path_to_module,notebook_filename)
-        with open(full_file_name, 'w') as f:
-            f.write(script)
-
-        # Read to notebook
-        with open(notebook_filename) as f:
-            nb = nbformat.read(f, as_version=4)
+        cells = [nbformat.v4.new_code_cell(source=script)]
+        nb = nbformat.v4.new_notebook(cells=cells,
+                                      metadata={'language': 'python'})
 
         # Execute the script
         executor = ExecutePreprocessor(timeout=timeout, kernel_name=kernel)
-        executor.preprocess(nb, {'metadata': {'path': 'notebooks/'}})
+        nb, metadata = executor.preprocess(nb, {'metadata': {}})
 
         # Export html from the notebook
         html_exporter = HTMLExporter()
         html_exporter.template_file = 'basic'
         body, _ = html_exporter.from_notebook_node(nb)
 
-        # Remove the temporary file
-        if os.path.exists(full_file_name):
-            os.remove(full_file_name)
-
         # Extract the result part of the html
-        return ScriptExecutor.extract_output(body)
+        output = ScriptExecutor.extract_output(body)
+
+        return output
 
     @staticmethod
     def extract_output(html_string):

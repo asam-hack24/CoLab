@@ -10,7 +10,7 @@ class PythonMessage(Message):
         self._message_type = MessageType.PYTHON
 
     def serialize(self):
-        pass
+        return self._serializer.serialise_message(self)
 
     def _do_create_html_message(self):
         executor = PythonExecutor()

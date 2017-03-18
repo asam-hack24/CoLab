@@ -9,7 +9,7 @@ class TextMessage(Message):
         self._message_type = MessageType.TEXT
 
     def serialize(self):
-        return self._serializer.serialise(raw_text=self._message)
+        return self._serializer.serialise_message(self)
 
     def _do_create_html_message(self):
         self._html_message = self._message
