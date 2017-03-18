@@ -15,6 +15,23 @@
                       }
                   });
             showUI('#cont1');
+
+
+                    $('.script-editor').click(function() {
+            if(!$(this).hasClass('active')){
+                
+                $('.script-editor.active').removeClass('active');
+                $(this).addClass('active');
+                
+                var temp =   $('#'+$(this).attr('data-up'));
+                
+                hideUI('.chat-container')
+                showUI('#'+$(this).attr('data-up'));
+                temp.addClass('active').removeClass('hidechat');
+                temp.prevAll('.chat-container').addClass('hidechat').removeClass('active');
+                temp.nextAll('.chat-container').removeClass('active').removeClass('hidechat');
+            }
+        });
         });
         
         function showUI(ele){

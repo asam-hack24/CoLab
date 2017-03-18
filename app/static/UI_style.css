@@ -3,6 +3,7 @@ html {
 }
 body {
   height: 100%;
+   padding: 0;
 }
 .panel-body{
 	/*max-height: 500px;*/
@@ -11,14 +12,20 @@ body {
 }
 
 
+
+.container-fluid{
+    height:100%;
+}
+
+.row , .panel {
+    height:100%;
+}
+
+/*
 * {
   margin: 0;
   padding: 0;
-}
-
-.container-fluid, .row , .panel, .col-md-6 {
-    height:100%;
-}
+}*/
 
 body {
   background: #DFDFEF;
@@ -130,6 +137,7 @@ p {
 
 .chat-input {
   width: 100%;
+  height: 100%;
   border: none;
   background: rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.3);
@@ -168,11 +176,11 @@ p {
 }
 
 .user-profile:nth-child(1) {
-  background-image: url(http://vignette3.wikia.nocookie.net/fairytail/images/0/02/Mugshot_of_Erza.png/revision/latest?cb=20130509171537);
+  background-image: url(./images/text_img.jpg);
 }
 
 .user-profile:nth-child(3) {
-  background-image: url(http://orig15.deviantart.net/8172/f/2016/079/7/2/natsu_xabused_reader_fire_within_the_heart_p1_by_minnibellsnow-d9vv2cy.jpg);
+  background-image: url(./images/python_img.png);
 }
 
 .user-profile:nth-child(5) {
@@ -187,3 +195,36 @@ p {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
+
+
+
+.script-editor {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 0%;
+  background: #DFDFEF;
+  margin: 0 10px;
+  background-size: cover;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  cursor: pointer
+}
+
+.script-editor:nth-child(1) {
+  background-image: url(./images/text_img.png);
+}
+
+.script-editor:nth-child(3) {
+  background-image: url(./images/python_img.png);
+}
+
+.script-editor:nth-child(5) {
+  background-image: url(./images/R_img.png);
+}
+
+.script-editor.active {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
