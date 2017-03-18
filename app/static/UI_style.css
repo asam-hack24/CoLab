@@ -5,35 +5,33 @@ body {
   height: 100%;
    padding: 0;
 }
-.panel-body{
-	/*max-height: 500px;*/
-	overflow:auto;
-    height: 100%;
-}
-
 
 
 .container-fluid, .row , .panel, .col-md-6{
     height:100%;
 }
 
-.chat-header{
-    height:10%;
+
+.editor-box{
+  height:90%;
+  
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  overflow-y: hidden;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 
-.chat-box{
-    height:90%;
-}
 /*
 * {
   margin: 0;
   padding: 0;
 }*/
 
+/*
 .btn{
  position: absolute;
  right: 0;
-}
+}*/
 
 body {
   background: silver;
@@ -46,6 +44,7 @@ body {
 
 .chat-box {
   background-color: black;
+  height: 90%;
  /*margin: 100px auto;
   max-width: 500px;
   height: 650px;*/
@@ -87,7 +86,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.3);
   padding: 0.7em;
-  overflow: scroll;
+  overflow: auto;
   transform: translateX(100%);
   opacity: 0;
   transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
@@ -180,7 +179,8 @@ p {
   background: #fff;
   padding: 0.5em;
   padding-bottom: .7em;
-  text-align: center;
+  text-align: center;    
+  height:10%;
 }
 
 .chat-header span {
@@ -225,6 +225,20 @@ p {
 }
 
 
+.editor-header {
+  background: #fff;
+  padding: 0.5em;
+  padding-bottom: .7em;
+  text-align: center;
+  height:10%;
+}
+
+.editor-header span {
+  font-size: 12px;
+  position: absolute;
+  margin: 20px -40px;
+  font-style: italic;
+}
 
 .script-editor {
   width: 30px;
@@ -255,3 +269,4 @@ p {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
+

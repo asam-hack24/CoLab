@@ -1,5 +1,6 @@
     $(document).ready(function(){
                   $('.user-profile').click(function() {
+
                       if(!$(this).hasClass('active')){
                           
                           $('.user-profile.active').removeClass('active');
@@ -9,12 +10,14 @@
                           
                           hideUI('.chat-container')
                           showUI('#'+$(this).attr('data-up'));
+                          
                           temp.addClass('active').removeClass('hidechat');
                           temp.prevAll('.chat-container').addClass('hidechat').removeClass('active');
-                          temp.nextAll('.chat-container').removeClass('active').removeClass('hidechat');
+                          temp.nextAll('.chat-container').removeClass('active').addClass('hidechat');
                       }
                   });
             showUI('#cont1');
+             showUI('#editor1');
 
 
                     $('.script-editor').click(function() {
@@ -30,10 +33,10 @@
                       showUI('#'+$(this).attr('data-up'));
                       temp.addClass('active').removeClass('hidechat');
                       temp.prevAll('.editor-input').addClass('hidechat').removeClass('active');
-                      temp.nextAll('.editor-input').removeClass('active').removeClass('hidechat');
+                      temp.nextAll('.editor-input').removeClass('active').addClass('hidechat');
             }
         });
-                      showUI('#editor1');
+                     
         });
         
         function showUI(ele){
