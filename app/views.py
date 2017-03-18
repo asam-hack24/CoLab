@@ -6,6 +6,8 @@ from app.streaming.avroserialiser import AvroSerialiser
 from app.streaming.avrodeserialiser import AvroDeserialiser
 from time import sleep
 from app.messages.message_text import TextMessage
+from app.messages.message_python import PythonMessage
+from app.messages.message_r import RMessage
 from datetime import datetime
 
 
@@ -46,9 +48,12 @@ def get_messages():
 
 @app.route('/send', methods=['POST'])
 def send():
-    new_message = None
     if request.form['type'] == 'text':
         new_message = TextMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
+    elif request.form['type'] == 'python':
+        new_message = PythonMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
+    elif request.form['type'] == 'r':
+        new_message = RMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
     else:
         raise ValueError('Unrecognised message type in views.py send()')
     buffer = serialiser.serialise_message(new_message)

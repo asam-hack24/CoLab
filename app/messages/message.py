@@ -11,7 +11,7 @@ class MessageType(Enum):
 
 
 class Message(metaclass=ABCMeta):
-    def __init__(self, author, last_author, time_created, time_last_modified, message):
+    def __init__(self, author, last_author, time_created, time_last_modified, message, html=None):
         if not isinstance(time_created, datetime):
             raise ValueError("time_stamp: Expected a datetime object, got {}".format(type(time_created)))
         if not isinstance(time_last_modified, datetime):
@@ -26,7 +26,7 @@ class Message(metaclass=ABCMeta):
         self._time_created = time_created
         self._time_last_modified = time_last_modified
         self._message = message
-        self._html_message = None
+        self._html_message = html
         self._message_type = None
         self._serializer = AvroSerialiser()
 

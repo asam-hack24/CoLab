@@ -3,10 +3,10 @@ from app.script_execution.python_executor import PythonExecutor
 
 
 class PythonMessage(Message):
-    def __init__(self, author, last_author, time_created, time_last_modified, message):
+    def __init__(self, author, last_author, time_created, time_last_modified, message, html=None):
         super(PythonMessage, self).__init__(author=author, last_author=last_author,
                                             time_created=time_created, time_last_modified=time_last_modified,
-                                            message=message)
+                                            message=message, html=html)
         self._message_type = MessageType.PYTHON
 
     def serialize(self):
