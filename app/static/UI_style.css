@@ -2,18 +2,22 @@ html {
   height: 100%;
 }
 body {
-  min-height: 100%;
-  overflow-y: hidden;
+  height: 100%;
 }
 .panel-body{
-	max-height: 500px;
+	/*max-height: 500px;*/
 	overflow:auto;
+    height: 100%;
 }
 
 
 * {
   margin: 0;
   padding: 0;
+}
+
+.container-fluid, .row , .panel, .col-md-6 {
+    height:100%;
 }
 
 body {
@@ -32,7 +36,7 @@ body {
   height: 650px;*/
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   /*border : 1px solid #000;*/
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
   transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
@@ -40,8 +44,8 @@ body {
 .chat-container {
   position: absolute;
   padding: 20px;
-  width: 100;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   overflow: scroll;
   transform: translateX(100%);
   opacity: 0;
