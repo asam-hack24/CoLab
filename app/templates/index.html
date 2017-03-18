@@ -1,41 +1,174 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Messages</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-    <script>
-    if (!!window.EventSource) {
-        var source = new EventSource('/get_messages');
-        source.onmessage = function(e) {
-            var m = $("#messages");
-            if (m.text() == 'nothing received yet')
-                m.html("<div>" + e.data + "</div>");
-            else
-                m.append("<div>" + e.data + "</div>");
-             
-             //Needed because MathJax only formats on page load   
-             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
-        }
-        source.onopen = function(e) {
-            console.log('onopen');
-        }
-    }
-    </script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- Bootstrap scripts -->
+     <!-- Latest compiled and minified CSS --> 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="{{url_for('static', filename='UI_style.css')}}">
+    <script src="{{url_for('static', filename='UI_functionality.js')}}"></script>
+
+<!-- Navigation Bar
+    <div class= "container">
+    <ul class="nav navbar-nav navbar-right">
+       <li><a href="#">Sign Up</a></li>
+       <li><a href="#">Sign In</a></li>
+       <li><a href="#">About</a></li>
+     </ul>
+     </div> -->
   </head>
+
   <body>
-    <div>Some math $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</div>
-    <div id="messages">nothing received yet</div>
+
+<div class="container-fluid">
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+  <div class="row">
+    <div class="col-md-6" style="border-color : white;">
+        <div class="row">
+          <div class="col">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">Topics</div>
+              <div class="panel-body" style="height: 100;">
+                  <div class="chat-control">
+                    <input class="chat-input" type="text" placeholder="enter your message" />
+                  </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col" style="border-color: red;"> Script
+            Level 2: .col-4 .col-sm-6
+          </div>
+        </div>
+    </div>
+
+    <div class = "col-md-6" style="height: 100%"> 
+        <div class="panel panel-default">
+        <div class="panel-heading" style="border-color:blue;"">
+          
+          <div class="chat-header">
+          <div class="user-profile active" data-up='cont1'></div>
+          <span>Erza</span>
+          <div class="user-profile" data-up='cont2'></div>
+          <span>Nastu</span>
+          <div class="user-profile" data-up='cont3'></div>
+          <span>Lucy</span>
+        </div>
+        </div>
+        <div class="panel-body">
+          
+<div class="chat-box">
+
+  <div id='chat' class="chat">
+
+    <div class="chat-container active" id='cont1'>
+
+      <div class="bubble">
+        <p>LWHAT!!!!!!</p>
+      </div>
+      <span class="datestamp">May 20, 2016, 4:16 PM</span>
+
+
+      <div class="bubble bubble-alt">
+        <p>Aenean ac magna rutrum, finibus est at, venenatis ipsum. Etiam egestas venenatis semper. Sed a neque sed sem lacinia finibus ac nec nisi.</p>
+      </div>
+      <span class="datestamp  dt-alt">May 20, 2016, 4:17 PM</span>
+
+
+      <div class="bubble">
+        <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut facilisis justo in nisl elementum, at fermentum augue tempor. </p>
+      </div>
+
+      <div class="bubble">
+        <p>Aliquam feugiat tortor ac massa commodo convallis sit amet ultricies urna. Sed pharetra augue ac sapien varius, at vulputate velit pretium.</p>
+      </div>
+      <span class="datestamp">May 20, 2016, 4:20 PM</span>
+
+      <div class="bubble bubble-alt">
+        <p>Quisque sit amet nulla nibh. Mauris eu lacus sed orci rhoncus cursus nec et enim. Phasellus finibus luctus mi ac sodales. Integer efficitur gravida mauris in eleifend. Maecenas ac interdum mi.</p>
+      </div>
+      <span class="datestamp  dt-alt">May 20, 2016, 4:22 PM</span>
+    </div>
+
+    <div class="chat-container" id='cont2'>
+
+      <div class="bubble">
+        <p>HEY!!!!!!!!!!!!</p>
+      </div>
+      <span class="datestamp">May 20, 2016, 4:16 PM</span>
+
+
+      <div class="bubble bubble-alt">
+        <p>Aenean ac magna rutrum, finibus est at, venenatis ipsum. Etiam egestas venenatis semper. Sed a neque sed sem lacinia finibus ac nec nisi.</p>
+      </div>
+      <span class="datestamp  dt-alt">May 20, 2016, 4:17 PM</span>
+
+
+      <div class="bubble">
+        <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut facilisis justo in nisl elementum, at fermentum augue tempor. </p>
+      </div>
+
+      <div class="bubble">
+        <p>Aliquam feugiat tortor ac massa commodo convallis sit amet ultricies urna. Sed pharetra augue ac sapien varius, at vulputate velit pretium.</p>
+      </div>
+      <span class="datestamp">May 20, 2016, 4:20 PM</span>
+
+      <div class="bubble bubble-alt">
+        <p>Quisque sit amet nulla nibh. Mauris eu lacus sed orci rhoncus cursus nec et enim. Phasellus finibus luctus mi ac sodales. Integer efficitur gravida mauris in eleifend. Maecenas ac interdum mi.</p>
+      </div>
+      <span class="datestamp  dt-alt">May 20, 2016, 4:22 PM</span>
+    </div>
+    <div class="chat-container" id='cont3'>
+      <div class="bubble">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut sapien vitae eros consectetur vehicula lacinia at nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum aliquet elit nec erat rutrum rutrum. Mauris ligula
+          magna, dignissim id tortor eu, aliquet dapibus ipsum</p>
+      </div>
+      <span class="datestamp">May 20, 2016, 4:16 PM</span>
+
+
+      <div class="bubble bubble-alt">
+        <p>Aenean ac magna rutrum, finibus est at, venenatis ipsum. Etiam egestas venenatis semper. Sed a neque sed sem lacinia finibus ac nec nisi.</p>
+      </div>
+      <span class="datestamp  dt-alt">May 20, 2016, 4:17 PM</span>
+
+
+      <div class="bubble">
+        <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut facilisis justo in nisl elementum, at fermentum augue tempor. </p>
+      </div>
+
+      <div class="bubble">
+        <p>Aliquam feugiat tortor ac massa commodo convallis sit amet ultricies urna. Sed pharetra augue ac sapien varius, at vulputate velit pretium.</p>
+      </div>
+      <span class="datestamp">May 20, 2016, 4:20 PM</span>
+
+      <div class="bubble bubble-alt">
+        <p>Quisque sit amet nulla nibh. Mauris eu lacus sed orci rhoncus cursus nec et enim. Phasellus finibus luctus mi ac sodales. Integer efficitur gravida mauris in eleifend. Maecenas ac interdum mi.</p>
+      </div>
+      <span class="datestamp  dt-alt">May 20, 2016, 4:22 PM</span>
+    </div>
+
+  </div>
+  <div class="chat-control">
+    <input class="chat-input" type="text" placeholder="enter your message" />
+  </div>
+</div>
+
+
+        </div>
+        </div>
+    </div>
+  </div>
+
+</div>
     
-    <form id="message-form">
-        <input type="text" name="message"/>
-        <input type="submit"/>
-    </form>
-    
-  <script>
-        $( "#message-form" ).submit(function( event ) {
-          event.preventDefault();
-          $.post( "/send", $("#message-form").serialize() );
-        });
-  </script>
   </body>
-</html>
