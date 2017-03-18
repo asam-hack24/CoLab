@@ -63,4 +63,4 @@ class Message(metaclass=ABCMeta):
         return self._last_author
 
     def get_message_type(self):
-        return self.message_type
+        return self._message_type
