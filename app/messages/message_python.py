@@ -1,5 +1,6 @@
 from app.messages.message import (Message, MessageType)
 from app.script_execution.python_executor import PythonExecutor
+import re
 
 
 class PythonMessage(Message):
@@ -15,4 +16,10 @@ class PythonMessage(Message):
     def _do_create_html_message(self):
         executor = PythonExecutor()
         raw_message = self.get_raw_message()
-        self._html_message = executor.execute(raw_message).replace('\n', '<br>')
+        #self._html_message = executor.execute(raw_message).replace('\n', '<br>')
+        self._html_message = executor.execute(raw_message)
+        #print(self._html_message)
+        self._html_message = re.sub(r'\>\n', '>', self._html_message)
+        self._html_message = re.sub(r'\n\<', '<', self._html_message)
+        self._html_message = self._html_message.replace('\n', '<br>')
+        #print(self._html_message)
