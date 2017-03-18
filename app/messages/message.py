@@ -34,7 +34,7 @@ class Message(metaclass=ABCMeta):
         self._time_last_modified = time_last_modified
         self._message = message
         self._html_message = None
-        self.message_type = None
+        self._message_type = None
         self._serializer = AvroSerialise()
 
     @abstractmethod

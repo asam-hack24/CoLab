@@ -6,7 +6,7 @@ class TextMessage(Message):
         super(TextMessage, self).__init__(author=author, last_author=last_author,
                                           time_created=time_created, time_last_modified=time_last_modified,
                                           message=message)
-        self.message_type = MessageType.TEXT
+        self._message_type = MessageType.TEXT
 
     def serialize(self):
         return self._serializer.serialise(text=self._message)
