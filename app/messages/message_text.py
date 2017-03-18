@@ -1,4 +1,4 @@
-from app.messages.message import Message
+from app.messages.message import (Message, MessageType)
 
 
 class TextMessage(Message):
@@ -6,12 +6,10 @@ class TextMessage(Message):
         super(TextMessage, self).__init__(author=author, last_author=last_author,
                                           time_created=time_created, time_last_modified=time_last_modified,
                                           message=message)
+        self.message_type = MessageType.TEXT
 
     def serialize(self):
         return self._serializer.serialise(text=self._message)
-
-    def _do_deserialize(self, message):
-        pass
 
     def _do_create_html_message(self):
         self._html_message = self._message

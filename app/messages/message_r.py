@@ -1,4 +1,4 @@
-from app.messages.message import Message
+from app.messages.message import (Message, MessageType)
 
 
 class RMessage(Message):
@@ -6,11 +6,9 @@ class RMessage(Message):
         super(RMessage, self).__init__(author=author, last_author=last_author,
                                        time_created=time_created, time_last_modified=time_last_modified,
                                        message=message)
+        self.message_type = MessageType.R
 
     def serialize(self):
-        pass
-
-    def _do_deserialize(self, message):
         pass
 
     def _do_create_html_message(self):

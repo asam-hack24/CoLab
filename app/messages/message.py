@@ -1,6 +1,13 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
 from app.streaming.avroserialise import AvroSerialise
+from enum import Enum
+
+
+class MessageType(Enum):
+    TEXT = 1
+    PYTHON = 2
+    R = 3
 
 
 class Author:
@@ -27,18 +34,11 @@ class Message(metaclass=ABCMeta):
         self._time_last_modified = time_last_modified
         self._message = message
         self._html_message = None
-
+        self.message_type = None
         self._serializer = AvroSerialise()
 
     @abstractmethod
     def serialize(self):
-        pass
-
-    def deserialize(self, message):
-        self._do_deserialize(message)
-
-    @abstractmethod
-    def _do_deserialize(self, message):
         pass
 
     def get_html(self):
@@ -61,3 +61,6 @@ class Message(metaclass=ABCMeta):
 
     def get_last_author(self):
         return self._last_author
+
+    def get_message_type(self):
+        return self.message_type
