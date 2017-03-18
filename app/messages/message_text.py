@@ -6,7 +6,6 @@ class TextMessage(Message):
         super(TextMessage, self).__init__(author=author, last_author=last_author,
                                           time_created=time_created, time_last_modified=time_last_modified,
                                           message=message)
-        self._html_message = None
 
     def serialize(self):
         pass
