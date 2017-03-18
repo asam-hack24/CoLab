@@ -17,7 +17,7 @@
                       }
                   });
             showUI('#cont1');
-             showUI('#editor1');
+            showUI('#editor1');
 
 
                     $('.script-editor').click(function() {
