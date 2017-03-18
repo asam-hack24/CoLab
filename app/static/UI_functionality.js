@@ -18,10 +18,17 @@
                   });
             showUI('#cont1');
             showUI('#editor1');
-
-
+            
+            $('.editor-input').hide();
+            $('#editor1').show();
+            
+                    
                     $('.script-editor').click(function() {
-
+                        
+                            $('.editor-input').hide();
+                            
+                            $('#'+$(this).attr('data-up')).show();
+                        /*
                       if(!$(this).hasClass('active')){
                 
                       $('.script-editor.active').removeClass('active');
@@ -33,8 +40,16 @@
                       showUI('#'+$(this).attr('data-up'));
                       temp.addClass('active').removeClass('hidechat');
                       temp.prevAll('.editor-input').addClass('hidechat').removeClass('active');
-                      temp.nextAll('.editor-input').removeClass('active').addClass('hidechat');
-            }
+                      temp.nextAll('.editor-input').removeClass('active').addClass('hidechat');*/
+        });
+        
+    CodeMirror.fromTextArea(document.getElementById("editor2-textarea"), {
+            mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true
         });
                      
         });

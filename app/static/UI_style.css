@@ -79,6 +79,8 @@ body {
 }
 
 
+/*
+
 .editor-input {
   position: absolute;
   padding:20px;
@@ -88,6 +90,16 @@ body {
   transform: translateX(100%);
   opacity: 0;
   transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.3);
+ 
+}*/
+
+.editor-input {
+  padding:20px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background: rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.3);
  
@@ -257,4 +269,3 @@ p {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
-

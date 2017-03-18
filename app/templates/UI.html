@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="../static/codemirror/lib/codemirror.css">
   <script src="../static/codemirror/lib/codemirror.js"></script>
   <script src="../static/codemirror/addon/edit/matchbrackets.js"></script>
-  <script src="../static/codemirror/mode/python/python.js"></script>
+  <script src="../static/codemirror/mode/python/python.js"></script>    
 
 
 <!-- Navigation Bar
@@ -62,9 +62,9 @@
                     <input class="chat-input" id="editor2" type="text" placeholder="enter your message SECOND EDITOR" />
                     <input class="chat-input" id="editor3" type="text" placeholder="enter your message THIRD EDITOR" /> -->
             <div class = "editor-box">
-                <div class ="editor-input active" id="editor1"> TEST1</div>
-                <div class ="editor-input hidechat" id="editor2"><textarea id="editor2-textarea"></textarea></div>
-                <div class ="editor-input hidechat" id="editor3"> TEST3</div>
+                <div class ="editor-input" id="editor1"> TEST1</div>
+                <div class ="editor-input" id="editor2"><textarea id="editor2-textarea"></textarea></div>
+                <div class ="editor-input" id="editor3"> TEST3</div>
             </div>
 
      
@@ -130,15 +130,5 @@
         </div>
       </div>
     </div>
-    <script>
-    CodeMirror.fromTextArea(document.getElementById("editor2-textarea"), {
-            mode: {name: "python",
-                   version: 3,
-                   singleLineStringErrors: false},
-            lineNumbers: true,
-            indentUnit: 4,
-            matchBrackets: true
-        });
-    </script>
   </body>
 </html>
