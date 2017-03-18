@@ -15,4 +15,4 @@ class PythonMessage(Message):
     def _do_create_html_message(self):
         executor = PythonExecutor()
         raw_message = self.get_raw_message()
-        return executor.execute(raw_message)
+        self._html_message = executor.execute(raw_message).replace('\n', '<br>')

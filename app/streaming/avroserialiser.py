@@ -10,9 +10,9 @@ class AvroSerialiser:
 
     def serialise_message(self, message):
         buffer = io.BytesIO()
-        print('Sending message with the following fields:')
-        print('raw_text:' + message.get_raw_message())
-        print('html:' + message.get_html())
+        #print('Sending message with the following fields:')
+        #print('raw_text:' + message.get_raw_message())
+        #print('html:' + message.get_html())
         writer(buffer, schema, [{'id': uuid.uuid4().int,
                                  'author': message.get_author(),
                                  'type': message.get_message_type().value,
