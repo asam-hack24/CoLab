@@ -174,7 +174,7 @@
         });
         $( "#create-topic-btn" ).click(function() {
           new_topic = $('#new-topic-name').val();
-          $.post( "/create_topic", {name:new_topic});
+          $.post( "/create_topic", {topic:new_topic});
           $('#new-topic-name').val("");
         });
       $(function() {
