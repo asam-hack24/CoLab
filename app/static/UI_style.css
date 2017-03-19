@@ -17,6 +17,10 @@ body {
   padding: 0;
 }*/
 
+label, input {
+  color: white;
+}
+
 
 
 .btn{
@@ -63,7 +67,7 @@ body {
   /*border : 1px solid #000;*/
   overflow-y: hidden;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 1s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 
 .chat-container {
@@ -75,18 +79,18 @@ body {
   overflow-x: hidden;
   transform: translateX(100%);
   opacity: 0;
-  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 1s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 
 .chat-container.active {
   transform: translateX(0);
-  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 1s cubic-bezier(0.25, 0.5, 0.5, 0.9);
   opacity: 1;
 }
 
 .chat-container.hidechat {
   transform: translateX(-10%);
-  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 1s cubic-bezier(0.25, 0.5, 0.5, 0.9);
   opacity: 0;
 }
 
