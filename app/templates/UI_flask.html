@@ -40,6 +40,8 @@
              
              //Needed because MathJax only formats on page load   
              MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
+             var d = $('.chat-container');
+             d.scrollTop(d.prop("scrollHeight"));
         }
         source.onopen = function(e) {
             console.log('onopen');
