@@ -146,6 +146,7 @@
         <span>General</span>
 
         <button type="button" id="create-topic-btn" class="btn btn-success">+</button>
+        <input type="text" id="new-topic-name"/>
         </div>
               
         <div class="chat-box" id='chat-boxes'>
@@ -172,7 +173,9 @@
           }
         });
         $( "#create-topic-btn" ).click(function() {
-          $.post( "/create_topic", {name:"placeholder"});
+          new_topic = $('#new-topic-name').val();
+          $.post( "/create_topic", {name:new_topic});
+          $('#new-topic-name').val("");
         });
       $(function() {
     $('#upload-file-btn').click(function() {
