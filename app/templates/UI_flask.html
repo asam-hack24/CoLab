@@ -84,7 +84,7 @@
             var data = JSON.parse(e.data);
             if (data.event_type == 'create_topic') {
                 n.append("<div class='chat-container' id=data.name></div>")
-                m.append("<div class='user-profile' data-up=data.name></div><span>data.name</span>");
+                m.append("<div class='user-profile' data-up="+data.name+"></div><span>"+data.name+"</span>");
             }
         }
         source.onopen = function(e) {

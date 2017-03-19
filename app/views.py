@@ -133,3 +133,4 @@ def upload_image():
 def create_topic():
     buffer = serialiser.serialise_event_message('create_topic', request.form['topic'])
     producer.send('events', buffer)
+    return ""
