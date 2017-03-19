@@ -10,6 +10,7 @@ from app.messages.message_python import PythonMessage
 from app.messages.message_r import RMessage
 from app.messages.message_image import (ImageMessage, get_blob_from_file)
 from datetime import datetime
+import configparser
 
 
 @app.route('/')
@@ -21,7 +22,9 @@ def index():
 def ui():
     return render_template("UI_flask.html")
 
-
+config = configparser.ConfigParser()
+config.read('userconfig.ini')
+USERNAME = config['user']['name']
 KAFKA_BROKER = '192.168.252.82'
 consumer = KafkaConsumer('test_avro_topic',
                          group_id=None,
@@ -54,11 +57,11 @@ def get_messages():
 @app.route('/send', methods=['POST'])
 def send():
     if request.form['type'] == 'text':
-        new_message = TextMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
+        new_message = TextMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['message'])
     elif request.form['type'] == 'python':
-        new_message = PythonMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
+        new_message = PythonMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['message'])
     elif request.form['type'] == 'r':
-        new_message = RMessage('Bob', 'Bob', datetime.now(), datetime.now(), request.form['message'])
+        new_message = RMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['message'])
     else:
         raise ValueError('Unrecognised message type in views.py send()')
     buffer = new_message.serialize()

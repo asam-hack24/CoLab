@@ -1,4 +1,4 @@
 #IDE metadata
 .idea*
-app/userconfig.py
+app/userconfig.ini
 __pycache__/
