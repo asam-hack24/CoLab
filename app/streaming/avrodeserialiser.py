@@ -1,4 +1,4 @@
-from app.streaming.avroschema import schema
+from app.streaming.avroschema import schema, event_schema
 from fastavro import reader
 import io
 from app.messages.message import MessageType
@@ -43,7 +43,7 @@ class AvroDeserialiser:
         return new_message
 
     def deserialise_event_message(self, buffer):
-        output = reader(io.BytesIO(buffer), schema)
+        output = reader(io.BytesIO(buffer), event_schema)
         event_type = None
         name = None
         for message in output:
