@@ -166,7 +166,18 @@
     </div>
 
     <div class = "col-md-6">
+        
 
+        <div class="chat-header">
+       <div id="topics" style="display: inline;">
+       <div class="user-profile active" data-up='General'></div>
+       <span>General</span>        </div>
+       <input type="text" id="new-topic-name" style="position: absolute; right:150px; width:100px;">
+       <button type="button" title="Add Channel" id="create-topic-btn" class="btn btn-success" style="right:100px;">+</button>        <button id="export-py" title="Export Python code"></button>
+       <button id="export-r" title="Export R code"></button>
+       </div>
+
+        <!--
         <div class="chat-header">
 
 
@@ -178,6 +189,7 @@
         <button type="button" id="create-topic-btn" class="btn btn-success" style="right:50px;">+</button>
         <input type="text" id="new-topic-name" style="position: absolute; right:100px; width:100px; color: black;">
         </div>
+        -->
               
         <div class="chat-box" id='chat-boxes'>
 
@@ -212,23 +224,22 @@
           $.post( "/create_topic", {topic:new_topic});
           $('#new-topic-name').val("");
         });
-      $(function() {
-    $('#upload-file-btn').click(function() {
-            var form_data = new FormData($('#upload-file')[0]);
-            $.ajax({
-                type: 'POST',
-                url: '/upload_image',
-                data: form_data,
-                contentType: false,
-                cache: false,
-                processData: false,
-                async: false,
-                success: function(data) {
-                    console.log('Success!');
-                },
-            });
+
+        $('#upload-file-btn').click(function() {
+                var form_data = new FormData($('#upload-file')[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/upload_image',
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    async: false,
+                    success: function(data) {
+                        console.log('Success!');
+                    },
+                });
         });
-    });
 
   </script>
   </body>
