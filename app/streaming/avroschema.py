@@ -11,3 +11,12 @@ schema = {
         {'name': 'timestamp', 'type': 'float'}
     ],
 }
+
+event_schema = {
+    'name': 'EventMessage',
+    'type': 'record',
+    'fields': [
+        {'name': 'event_type', 'type': 'string'},
+        {'name': 'name', 'type': 'string'}
+    ]
+}

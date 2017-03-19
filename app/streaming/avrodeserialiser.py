@@ -40,3 +40,12 @@ class AvroDeserialiser:
             else:
                 raise ValueError('Unrecognised message type in AvroSerialise.deserialise')
         return new_message
+
+    def deserialise_event_message(self, buffer):
+        output = reader(io.BytesIO(buffer), schema)
+        event_type = None
+        name = None
+        for message in output:
+            event_type = message['event_type']
+            name = message['name']
+        return event_type, name

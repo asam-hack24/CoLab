@@ -35,10 +35,32 @@ consumer = KafkaConsumer('test_avro_topic',
                          bootstrap_servers=[KAFKA_BROKER],
                          auto_offset_reset='earliest',
                          enable_auto_commit=False)
+events_consumer = KafkaConsumer('events',
+                                group_id=None,
+                                bootstrap_servers=[KAFKA_BROKER],
+                                auto_offset_reset='earliest',
+                                enable_auto_commit=False)
 producer = KafkaProducer(bootstrap_servers=[KAFKA_BROKER])
 serialiser = AvroSerialiser()
 all_messages = []
 deserialiser = AvroDeserialiser()
+
+
+@app.route('/get_events')
+def get_events():
+    if request.headers.get('accept') == 'text/event-stream':
+        def script():
+            sleep(0.1)  # this fixes missing messages, don't remove
+            partitions = events_consumer.poll(timeout_ms=100, max_records=50)
+            if len(partitions) > 0:
+                for p in partitions:
+                    for response in partitions[p]:
+                        event_type, name = deserialiser.deserialise_event_message(response.value)
+                        payload = {'event_type': event_type, 'name': name}
+                        yield "data: %s\n\n" % json.dumps(payload)
+
+        return Response(script(), content_type='text/event-stream')
+    return redirect(url_for('static', filename='index.html'))
 
 
 @app.route('/get_messages')
@@ -46,7 +68,7 @@ def get_messages():
     if request.headers.get('accept') == 'text/event-stream':
         def script():
             sleep(0.1)  # this fixes missing messages, don't remove
-            partitions = consumer.poll(timeout_ms=100, max_records=5)
+            partitions = consumer.poll(timeout_ms=100, max_records=50)
             if len(partitions) > 0:
                 for p in partitions:
                     for response in partitions[p]:
