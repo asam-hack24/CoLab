@@ -43,6 +43,30 @@
              MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
              var d = $('.chat-container');
              d.scrollTop(d.prop("scrollHeight"));
+             
+            $( ".bubble" ).click(function() {
+                
+                $('.editor-input').hide();
+                $('.script-editor.active').removeClass('active');
+                
+                msg_type = $(this).attr('data-msg-type');
+                msg_raw = $(this).attr('data-msg-raw');
+                
+                if( msg_type == 1)  { //Text
+                    $('#editor1').show();
+                    $('#editor1-btn').addClass('active');
+                    MyProject.cmeditor1.setValue(msg_raw);
+                    console.log(msg_raw)
+                } else if( msg_type == 2 ) { //Python
+                    $('#editor2').show();
+                    $('#editor2-btn').addClass('active');
+                    MyProject.cmeditor2.setValue(msg_raw);
+                } else if( msg_type == 3 ) { //Python
+                    $('#editor3').show();
+                    $('#editor3-btn').addClass('active');
+                    MyProject.cmeditor3.setValue(msg_raw);
+                }
+            });
         }
         source.onopen = function(e) {
             //console.log('onopen');
@@ -62,13 +86,13 @@
 
 
             <div class="editor-header">
-              <div class="script-editor active" data-up='editor1'></div>
+              <div class="script-editor active" id="editor1-btn" data-up='editor1'></div>
                 <span>Text</span>
-              <div class="script-editor" data-up='editor2'></div>
+              <div class="script-editor" id="editor2-btn" data-up='editor2'></div>
                 <span>Python</span>
-              <div class="script-editor" data-up='editor3'></div>
+              <div class="script-editor" id="editor3-btn" data-up='editor3'></div>
                 <span>R</span>
-              <div class="script-editor" data-up='editor4'></div>
+              <div class="script-editor" id="editor4-btn" data-up='editor4'></div>
                 <span>Upload</span>
               <button id="send-btn" type="button" class="btn btn-primary">Send</button>
                 <span></span>
@@ -157,10 +181,6 @@
                 },
             });
         });
-    });
-    
-    $( ".bubble" ).click(function() {
-            console.log($(this).attr('data-msg-type'))
     });
 
   </script>
