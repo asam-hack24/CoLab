@@ -17,11 +17,14 @@ body {
   padding: 0;
 }*/
 
-/*
+
 .btn{
- position: absolute;
- right: 0;
-}*/
+
+  position: absolute;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer
+}
 
 body {
   background: silver;

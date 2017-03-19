@@ -26,8 +26,10 @@
                     $('.script-editor').click(function() {
                         
                             $('.editor-input').hide();
+                            $('.script-editor.active').removeClass('active');
                             
                             $('#'+$(this).attr('data-up')).show();
+                            $(this).addClass('active');
                         /*
                       if(!$(this).hasClass('active')){
                 
