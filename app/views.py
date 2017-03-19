@@ -11,19 +11,22 @@ from app.messages.message_r import RMessage
 from app.messages.message_image import (ImageMessage, get_blob_from_file)
 from datetime import datetime
 import configparser
+import os
 
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template("index.html")
-    
+
+
 @app.route('/ui')
 def ui():
     return render_template("UI_flask.html")
 
+
 config = configparser.ConfigParser()
-config.read('userconfig.ini')
+config.read(os.path.join('app', 'userconfig.ini'))
 USERNAME = config['user']['name']
 KAFKA_BROKER = '192.168.252.82'
 consumer = KafkaConsumer('test_avro_topic',
