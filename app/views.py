@@ -80,7 +80,7 @@ def get_messages():
                         payload = {'message': message.get_html(),
                                    'author': message.get_author(),
                                    'raw_message': raw_message,
-                                   'time_created': message.get_time_created().strftime("%B %d, %Y"),
+                                   'time_created': message.get_time_created().strftime("%H:%M:%S %B %d, %Y"),
                                    'topic': message.get_topic(),
                                    'message_type': message.get_message_type().value}
 

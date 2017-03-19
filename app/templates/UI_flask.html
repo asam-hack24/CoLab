@@ -37,7 +37,7 @@
             //console.log(e.data);
             var data = JSON.parse(e.data);
             var m = $("#"+data.topic);
-            m.append("<div class='bubble' data-msg-raw='"+data.raw_message+"' data-msg-type='"+data.message_type+"'><p>"+data.message+"</p></div><span class='datestamp dt-alt'><b>"+data.author+"</b>:"+data.time_created+"</span>");
+            m.append("<div class='bubble' data-msg-raw='"+data.raw_message+"' data-msg-type='"+data.message_type+"'><p>"+data.message+"</p></div><span class='datestamp dt-alt'>"+data.time_created+"~<b>"+data.author+"</b></span>");
              
              //Needed because MathJax only formats on page load   
              MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
