@@ -26,7 +26,7 @@ class AvroSerialiser:
         writer(buffer, schema, [{'id': uuid.uuid4().int,
                                  'author': message.get_author(),
                                  'type': message.get_message_type().value,
-                                 'raw_binary': message.get_raw_message(),
+                                 'binary': message.get_raw_message(),
                                  'timestamp': message.get_time_created().timestamp(),
                                  'html': message.get_html()}])
         return buffer.getvalue()

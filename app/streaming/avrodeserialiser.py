@@ -5,6 +5,7 @@ from app.messages.message import MessageType
 from app.messages.message_text import TextMessage
 from app.messages.message_python import PythonMessage
 from app.messages.message_r import RMessage
+from app.messages.message_image import ImageMessage
 from datetime import datetime
 
 
@@ -31,6 +32,11 @@ class AvroDeserialiser:
                                             datetime.fromtimestamp(message['timestamp']),
                                             datetime.fromtimestamp(0),
                                             message['raw_text'], html=message['html'])
+            elif MessageType(message['type']) is MessageType.IMAGE:
+                new_message = ImageMessage(message['author'], 'last_author',
+                                           datetime.fromtimestamp(message['timestamp']),
+                                           datetime.fromtimestamp(0),
+                                           message['binary'], html=message['html'])
             else:
                 raise ValueError('Unrecognised message type in AvroSerialise.deserialise')
         return new_message

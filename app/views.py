@@ -8,8 +8,8 @@ from time import sleep
 from app.messages.message_text import TextMessage
 from app.messages.message_python import PythonMessage
 from app.messages.message_r import RMessage
+from app.messages.message_image import (ImageMessage, get_blob_from_file)
 from datetime import datetime
-import io
 
 
 @app.route('/')
@@ -62,9 +62,8 @@ def send():
     return ""
 
 
-@app.route('/upload', methods=['POST'])
-def upload():
-    print("WAS HERE")
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
     if request.method == 'POST':
         if 'file' not in request.files:
             print('No file part')
@@ -72,14 +71,14 @@ def upload():
 
         file = request.files['file']
         # if user does not select file, browser also
-        # submit a empty part without filename
+        # submit  empty part without filename
         if file.filename == '':
             print('No selected file')
             return ''
-
         # Write the buffer
-        buffer = io.BytesIO()
-        file.save(dst=buffer)
-        print(buffer.getvalue())
-
+        encoded = get_blob_from_file(file)
+        new_message = ImageMessage('Bob', 'Bob', datetime.now(), datetime.now(), encoded)
+        buffer = new_message.serialize()
+        producer.send('test_avro_topic', buffer)
+        return ""
     return ""
