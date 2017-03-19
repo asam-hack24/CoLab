@@ -79,14 +79,14 @@
             });
             
             cmeditor2.on('focus',function(){
-                if( cmeditor1.getValue() == "Type Python code here" ) {
-                    cmeditor1.setValue("");
+                if( cmeditor2.getValue() == "Type Python code here" ) {
+                    cmeditor2.setValue("");
                 }
             });
             
             cmeditor3.on('focus',function(){
-                if( cmeditor1.getValue() == "Type R code here" ) {
-                    cmeditor1.setValue("");
+                if( cmeditor3.getValue() == "Type R code here" ) {
+                    cmeditor3.setValue("");
                 }
             });
                      
