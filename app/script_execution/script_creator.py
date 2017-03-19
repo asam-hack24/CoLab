@@ -18,15 +18,13 @@ def create_notebook_from_messages(messages, kernel_type):
         return None
 
     if kernel_type is MessageType.PYTHON:
-        nbformat.v4.new_notebook(cells=cells, metadata={'language': 'python'})
+        notebook = nbformat.v4.new_notebook(cells=cells, metadata={'language': 'python'})
     else:
-        nbformat.v4.new_notebook(cells=cells, metadata={'language': 'python'}) # TODO is this correct?
+        notebook = nbformat.v4.new_notebook(cells=cells, metadata={'language': 'r'})
+    return notebook
 
 
 def save_python_notebook_to_file(to_convert, file_object):
-    print(len(to_convert))
-   # print(type(file_object))
-
     notebook = create_notebook_from_messages(to_convert, MessageType.PYTHON)
     if notebook is not None:
         nbformat.write(nb=notebook, fp=file_object)
