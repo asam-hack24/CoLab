@@ -80,6 +80,7 @@ def get_messages():
                         raw_message = message.get_raw_message()
                         if isinstance(raw_message, bytes):
                             raw_message = raw_message.decode('utf8')
+                        raw_message = raw_message.replace("'", "&#39;")
                         payload = {'message': message.get_html(),
                                    'author': message.get_author(),
                                    'raw_message': raw_message,
