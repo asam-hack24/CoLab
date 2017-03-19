@@ -2,6 +2,14 @@ var MyProject = {};
 
     $(document).ready(function(){
                   $('.user-profile').click(function() {
+                      
+                            $('.chat-container').hide();
+                            $('.user-profile.active').removeClass('active');
+                            
+                            $('#'+$(this).attr('data-up')).show();
+                            $(this).addClass('active');
+                      
+                      /*
 
                       if(!$(this).hasClass('active')){
                           
@@ -17,9 +25,11 @@ var MyProject = {};
                           temp.prevAll('.chat-container').addClass('hidechat').removeClass('active');
                           temp.nextAll('.chat-container').removeClass('active').addClass('hidechat');
                       }
+                      */
                   });
-            showUI('#cont1');
-            showUI('#editor1');
+            
+            //showUI('#cont1');
+            //showUI('#editor1');
             
                     
                     $('.script-editor').click(function() {
@@ -70,6 +80,9 @@ var MyProject = {};
             indentUnit: 4,
             matchBrackets: true
         });
+        
+            $('.chat-container').hide();
+            $('#cont1').show();
 
              $('.editor-input').hide();
             $('#editor1').show();

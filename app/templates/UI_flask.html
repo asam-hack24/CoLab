@@ -35,9 +35,9 @@
         var source = new EventSource('/get_messages');
         source.onmessage = function(e) {
             var m = $("#cont1");
-            console.log(e.data);
+            //console.log(e.data);
             var data = JSON.parse(e.data);
-            m.append("<div class='bubble'><p>"+data.message+"</p></div><span class='datestamp dt-alt'><b>"+data.author+"</b>:"+data.time_created+"</span>");
+            m.append("<div class='bubble' data-msg-raw='"+data.raw_message+"' data-msg-type='"+data.message_type+"'><p>"+data.message+"</p></div><span class='datestamp dt-alt'><b>"+data.author+"</b>:"+data.time_created+"</span>");
              
              //Needed because MathJax only formats on page load   
              MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
@@ -45,7 +45,7 @@
              d.scrollTop(d.prop("scrollHeight"));
         }
         source.onopen = function(e) {
-            console.log('onopen');
+            //console.log('onopen');
         }
     }
     </script>
@@ -113,7 +113,7 @@
             <div class="chat-container active" id='cont1'>
             </div>
 
-            <div class="chat-container hidechat" id='cont2'>
+            <div class="chat-container" id='cont2'>
 
                   <div class="bubble">
                     <p>HEY!!!!!!!!!!!!</p>
@@ -121,7 +121,7 @@
 
             </div>
 
-            <div class="chat-container hidechat" id='cont3'>
+            <div class="chat-container" id='cont3'>
               
             </div>
      <!--     <div class="chat-control"><input class="chat-input" type="text" placeholder="enter your message" /></div>-->
@@ -157,6 +157,10 @@
                 },
             });
         });
+    });
+    
+    $( ".bubble" ).click(function() {
+            console.log($(this).attr('data-msg-type'))
     });
 
   </script>

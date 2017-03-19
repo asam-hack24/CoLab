@@ -77,9 +77,9 @@ body {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  transform: translateX(100%);
-  opacity: 0;
-  transition: all 1s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  /*transform: translateX(100%);*/
+  /* opacity: 0; */
+  /*transition: all 1s cubic-bezier(0.25, 0.5, 0.5, 0.9);*/
 }
 
 .chat-container.active {
@@ -153,11 +153,11 @@ p {
   background: #fbfbfb;
   border-radius: 3px;
   box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   /*color: rgba(255, 255, 255, 0.7);*/
   word-wrap: break-word;
   font-size: 1em;
-  margin-top: 30px;
+  margin-top: 10px;
   opacity: 1;
 }
 
