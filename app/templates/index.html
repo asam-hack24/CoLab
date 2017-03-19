@@ -8,13 +8,14 @@
         var source = new EventSource('/get_messages');
         source.onmessage = function(e) {
             var m = $("#messages");
+            console.log(e.data)
             if (m.text() == 'nothing received yet')
-                m.html("<div>" + e.data + "</div>");
+                m.html('<div>' + e.data + '</div>');
             else
-                m.append("<div>" + e.data + "</div>");
+                m.append('<div>' + e.data + '</div>');
              
              //Needed because MathJax only formats on page load   
-             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
+             MathJax.Hub.Queue(["<Types></Types>et", MathJax.Hub, "messages"]);
         }
         source.onopen = function(e) {
             console.log('onopen');

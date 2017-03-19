@@ -46,7 +46,14 @@ class ScriptExecutor(metaclass=ABCMeta):
         lines = cleaned_record.splitlines()
         lines = lines[1:-3]
         cleaned_record = ""
+        remove_newlines = False
         for line in lines:
+            if line.startswith('<img'):
+                remove_newlines = True
+            if remove_newlines and line.startswith('>'):
+                remove_newlines = False
             cleaned_record += line
-            cleaned_record += '\n'
+            if not remove_newlines:
+                cleaned_record += '\n'
+
         return cleaned_record
