@@ -42,7 +42,7 @@
                       temp.nextAll('.editor-input').removeClass('active').addClass('hidechat');*/
         });
         
-    CodeMirror.fromTextArea(document.getElementById("editor1-textarea"), {
+    var cmeditor1 = CodeMirror.fromTextArea(document.getElementById("editor1-textarea"), {
             mode: {name: "stex",
                    version: 3,
                    singleLineStringErrors: false},
@@ -51,7 +51,7 @@
             matchBrackets: true
         });
         
-    CodeMirror.fromTextArea(document.getElementById("editor2-textarea"), {
+    var cmeditor2 = CodeMirror.fromTextArea(document.getElementById("editor2-textarea"), {
             mode: {name: "python",
                    version: 3,
                    singleLineStringErrors: false},
@@ -60,7 +60,7 @@
             matchBrackets: true
         });
         
-    CodeMirror.fromTextArea(document.getElementById("editor3-textarea"), {
+    var cmeditor2 = CodeMirror.fromTextArea(document.getElementById("editor3-textarea"), {
             mode: {name: "r",
                    version: 3,
                    singleLineStringErrors: false},
@@ -71,6 +71,24 @@
 
              $('.editor-input').hide();
             $('#editor1').show();
+            
+            cmeditor1.on('focus',function(){
+                if( cmeditor1.getValue() == "Type text here" ) {
+                    cmeditor1.setValue("");
+                }
+            });
+            
+            cmeditor2.on('focus',function(){
+                if( cmeditor1.getValue() == "Type Python code here" ) {
+                    cmeditor1.setValue("");
+                }
+            });
+            
+            cmeditor3.on('focus',function(){
+                if( cmeditor1.getValue() == "Type R code here" ) {
+                    cmeditor1.setValue("");
+                }
+            });
                      
         });
         
