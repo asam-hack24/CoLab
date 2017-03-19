@@ -5,3 +5,4 @@ nbconvert
 jupyter
 numpy
 matplotlib
+notebook>=5.0.0rc1

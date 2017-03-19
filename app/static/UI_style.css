@@ -286,3 +286,23 @@ p {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
+
+.script-export {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background: #DFDFEF;
+  margin: 0 10px;
+  background-size: cover;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  cursor: pointer
+}
+
+.script-export:nth-child(2) {
+  background-image: url(./images/python_img.png);
+}
+
+.script-export:nth-child(4) {
+  background-image: url(./images/R_img.png);
+}

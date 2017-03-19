@@ -168,6 +168,9 @@
     <div class = "col-md-6">
 
         <div class="chat-header">
+              <button type="button" class="script-export">+</button>
+
+                <span>Export</span>
 
         <div id="topics" style="display: inline; align:left;">
         <div class="user-profile active" data-up='General'></div>
@@ -197,10 +200,13 @@
           
           if(editor == "editor1") { //text editor
               $.post( "/send", {type:"text",message:MyProject.cmeditor1.getValue(), topic:topic} );
+              MyProject.cmeditor1.setValue('')
           } else if (editor == "editor2") {
               $.post( "/send", {type:"python",message:MyProject.cmeditor2.getValue(), topic:topic} );
+              MyProject.cmeditor2.setValue('')
           } else if (editor == "editor3") {
               $.post( "/send", {type:"r",message:MyProject.cmeditor3.getValue(), topic:topic} );
+              MyProject.cmeditor3.setValue('')
           }
         });
         $( "#create-topic-btn" ).click(function() {

@@ -1,18 +1,21 @@
 from app import app
-from flask import Flask, session, redirect, url_for, escape, request, Response, render_template
+from flask import redirect, url_for, request, Response, render_template, make_response
 from kafka import KafkaConsumer
 from kafka import KafkaProducer
 from app.streaming.avroserialiser import AvroSerialiser
 from app.streaming.avrodeserialiser import AvroDeserialiser
 from time import sleep
+from app.messages.message import MessageType
 from app.messages.message_text import TextMessage
 from app.messages.message_python import PythonMessage
 from app.messages.message_r import RMessage
 from app.messages.message_image import (ImageMessage, get_blob_from_file)
+from app.script_execution.script_creator import (save_python_notebook_to_file, save_r_notebook_to_file)
 from datetime import datetime
 import configparser
 import os
 import json
+import io
 
 
 @app.route('/')
@@ -126,11 +129,45 @@ def upload_image():
         new_message = ImageMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'], encoded)
         buffer = new_message.serialize()
         producer.send('test_avro_topic', buffer)
+        convert_to_python_notebook()
     return ""
 
-
+    
 @app.route('/create_topic', methods=['POST'])
 def create_topic():
     buffer = serialiser.serialise_event_message('create_topic', request.form['topic'])
     producer.send('events', buffer)
     return ""
+
+
+# This route will prompt a file download with the csv lines
+@app.route('/download_python_notebook')
+def download():
+    file_object = convert_to_python_notebook()
+    response = make_response(file_object)
+    # This is the key: Set the right header for the response
+    # to be downloaded, instead of just printed on the browser
+    response.headers["Content-Disposition"] = "attachment; filename=my_python_notebook.ipynb"
+    return response
+
+
+def convert_to_python_notebook():
+    global all_messages
+    to_convert = []
+
+    for message in all_messages:
+        if message.get_message_type() is not MessageType.R:
+            to_convert.append(message)
+    file_object = io.BytesIO()
+    save_python_notebook_to_file(to_convert, file_object)
+    return file_object
+
+# def convert_to_r_notebook():
+#     global all_messages
+#     to_convert = []
+#
+#     for message in all_messages:
+#         if message.get_message_type() is not MessageType.PYTHON:
+#             to_convert.append(message)
+#     full_file_path = "/home/anton/sources/hack24/out_r.ipynb"
+#     save_r_notebook_to_file(to_convert, full_file_path)
