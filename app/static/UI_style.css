@@ -187,10 +187,9 @@ p {
 .datestamp {
   display: block;
   text-align: center;
-  margin-bottom: 30px;
-  color: #8b91a0;
+  color: #8c8c8c;
   float: left;
-  opacity: 0;
+  font-size: small;
 }
 
 .dt-alt {

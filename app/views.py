@@ -52,7 +52,12 @@ def get_messages():
                     for response in partitions[p]:
                         message = deserialiser.deserialise(response.value)
                         all_messages.append(message)
-                        payload = {'message': message.get_html(), 'author': message.get_author()}
+                        payload = {'message': message.get_html(), 
+                                   'author': message.get_author(),
+                                   'raw_message': message.get_raw_message(),
+                                   'time_created':message.get_time_created().strftime("%B %d, %Y"),
+                                   'message_type': message.get_message_type().value}
+                                   
                         yield "data: %s\n\n" % json.dumps(payload)
 
         return Response(script(), content_type='text/event-stream')
