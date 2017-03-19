@@ -1,3 +1,5 @@
+var MyProject = {};
+
     $(document).ready(function(){
                   $('.user-profile').click(function() {
 
@@ -89,8 +91,18 @@
                     cmeditor3.setValue("");
                 }
             });
+            
+        MyProject.cmeditor1 = cmeditor1;
+        MyProject.cmeditor2 = cmeditor2;
+        MyProject.cmeditor3 = cmeditor3;
+        
+        console.log(cmeditor1.getValue());
+        console.log(MyProject.cmeditor1.getValue());
                      
         });
+        
+        
+
         
         function showUI(ele){
             console.log($(ele));

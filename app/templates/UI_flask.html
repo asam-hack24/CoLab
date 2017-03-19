@@ -35,6 +35,7 @@
         var source = new EventSource('/get_messages');
         source.onmessage = function(e) {
             var m = $("#cont1");
+            console.log(e.data)
             m.append("<div class='bubble'><p>"+e.data+"</p></div>");
              
              //Needed because MathJax only formats on page load   
@@ -66,7 +67,7 @@
                 <span>R</span>
               <div class="script-editor" data-up='editor4'></div>
                 <span>Upload</span>
-              <button type="button" class="btn btn-primary">Send</button>
+              <button id="send-btn" type="button" class="btn btn-primary">Send</button>
                 <span></span>
             </div>
 
@@ -125,5 +126,29 @@
         </div>
       </div>
     </div>
+      <script>
+    $( "#send-btn" ).click(function() {
+          $.post( "/send", {type:"python",message:MyProject.cmeditor2.getValue()} );
+          console.log("Send:"+MyProject.cmeditor2.getValue());
+        });
+      $(function() {
+    $('#upload-file-btn').click(function() {
+            var form_data = new FormData($('#upload-file')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '/upload_image',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                async: false,
+                success: function(data) {
+                    console.log('Success!');
+                },
+            });
+        });
+    });
+
+  </script>
   </body>
 </html>

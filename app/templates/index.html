@@ -47,10 +47,6 @@
           event.preventDefault();
           $.post( "/send", $("#message-form").serialize() );
         });
-  </script>
-
-
-  <script>
       $(function() {
     $('#upload-file-btn').click(function() {
         var form_data = new FormData($('#upload-file')[0]);
