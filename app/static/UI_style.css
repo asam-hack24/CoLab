@@ -201,8 +201,7 @@ p {
 .chat-header span {
   font-size: 12px;
   position: absolute;
-  margin: 20px -40px;
-  font-style: italic;
+  margin: 30px -40px;
 }
 
 .user-profile {
@@ -239,8 +238,7 @@ p {
 .editor-header span {
   font-size: 12px;
   position: absolute;
-  margin: 20px -40px;
-  font-style: italic;
+  margin: 30px -40px;
 }
 
 .script-editor {
@@ -266,6 +264,10 @@ p {
 
 .script-editor:nth-child(5) {
   background-image: url(./images/R_img.png);
+}
+
+.script-editor:nth-child(7) {
+  background-image: url(./images/plot_img.png);
 }
 
 .script-editor.active {
