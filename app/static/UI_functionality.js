@@ -82,7 +82,7 @@ var MyProject = {};
         });
         
             $('.chat-container').hide();
-            $('#cont1').show();
+            $('#General').show();
 
              $('.editor-input').hide();
             $('#editor1').show();
