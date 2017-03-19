@@ -60,7 +60,7 @@
             matchBrackets: true
         });
         
-    var cmeditor2 = CodeMirror.fromTextArea(document.getElementById("editor3-textarea"), {
+    var cmeditor3 = CodeMirror.fromTextArea(document.getElementById("editor3-textarea"), {
             mode: {name: "r",
                    version: 3,
                    singleLineStringErrors: false},

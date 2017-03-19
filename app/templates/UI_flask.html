@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- Bootstrap scripts -->
+     <!-- Latest compiled and minified CSS --> 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--   <link rel="stylesheet" href="{{url_for('static', filename='UI_style.css')}}">
+    <script src="{{url_for('static', filename='UI_functionality.js')}}"></script> -->
+
+  <link rel="stylesheet" href="/static/UI_style.css">
+  <script src="/static/UI_functionality.js"></script>
+  
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+  
+   <!--Syntax Highlighting -->
+  <link rel="stylesheet" href="/static/codemirror/lib/codemirror.css">
+  <script src="/static/codemirror/lib/codemirror.js"></script>
+  <script src="/static/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="/static/codemirror/mode/python/python.js"></script>    
+  <script src="/static/codemirror/mode/stex/stex.js"></script> 
+  <script src="/static/codemirror/mode/r/r.js"></script> 
+  
+    <script>
+    if (!!window.EventSource) {
+        var source = new EventSource('/get_messages');
+        source.onmessage = function(e) {
+            var m = $("#cont1");
+            m.append("<div class='bubble'><p>"+e.data+"</p></div>");
+             
+             //Needed because MathJax only formats on page load   
+             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
+        }
+        source.onopen = function(e) {
+            console.log('onopen');
+        }
+    }
+    </script>
+
+
+  </head>
+
+  <body >
+<div class="container-fluid" >
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+  <div class="row">
+    <div class="col-md-6" >
+        <div class="row">
+
+
+            <div class="editor-header">
+              <div class="script-editor active" data-up='editor1'></div>
+                <span>Text</span>
+              <div class="script-editor" data-up='editor2'></div>
+                <span>Python</span>
+              <div class="script-editor" data-up='editor3'></div>
+                <span>R</span>
+              <div class="script-editor" data-up='editor4'></div>
+                <span>Upload</span>
+              <button type="button" class="btn btn-primary">Send</button>
+                <span></span>
+            </div>
+
+            <div class = "editor-box">
+                <div class ="editor-input" id="editor1"><textarea id="editor1-textarea">Type text here</textarea></div>
+                <div class ="editor-input" id="editor2"><textarea id="editor2-textarea">Type Python code here</textarea></div>
+                <div class ="editor-input" id="editor3"><textarea id="editor3-textarea">Type R code here</textarea></div>
+                <div class ="editor-input" id="editor4">
+                    <form id="upload-file" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <label for="file">Select a file</label>
+                            <input  name="file" type="file">
+
+                            <button class="btn btn-default"  id="upload-file-btn" type="button">Upload file</button>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+
+     
+        </div>
+    </div>
+
+    <div class = "col-md-6"> 
+          
+          <div class="chat-header">
+          <div class="user-profile active" data-up='cont1'></div>
+          <span>Erza</span>
+          <div class="user-profile" data-up='cont2'></div>
+          <span>Nastu</span>
+          <div class="user-profile" data-up='cont3'></div>
+          <span>Lucy</span>
+
+          <button type="button" class="btn btn-success">+</button>
+        </div>
+              
+        <div class="chat-box">
+
+            <div class="chat-container active" id='cont1'>
+            </div>
+
+            <div class="chat-container hidechat" id='cont2'>
+
+                  <div class="bubble">
+                    <p>HEY!!!!!!!!!!!!</p>
+                  </div>
+
+            </div>
+
+            <div class="chat-container hidechat" id='cont3'>
+              
+            </div>
+     <!--     <div class="chat-control"><input class="chat-input" type="text" placeholder="enter your message" /></div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -16,6 +16,10 @@ from datetime import datetime
 @app.route('/index')
 def index():
     return render_template("index.html")
+    
+@app.route('/ui')
+def ui():
+    return render_template("UI_flask.html")
 
 
 KAFKA_BROKER = '192.168.252.82'
@@ -67,7 +71,7 @@ def upload_image():
     if request.method == 'POST':
         if 'file' not in request.files:
             print('No file part')
-            return redirect(request.url)
+            return ""
 
         file = request.files['file']
         # if user does not select file, browser also
@@ -80,5 +84,4 @@ def upload_image():
         new_message = ImageMessage('Bob', 'Bob', datetime.now(), datetime.now(), encoded)
         buffer = new_message.serialize()
         producer.send('test_avro_topic', buffer)
-        return ""
     return ""
