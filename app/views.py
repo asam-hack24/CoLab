@@ -77,12 +77,12 @@ def get_messages():
                         raw_message = message.get_raw_message()
                         if isinstance(raw_message, bytes):
                             raw_message = raw_message.decode('utf8')
-                        payload = {'message': message.get_html(), 
+                        payload = {'message': message.get_html(),
                                    'author': message.get_author(),
                                    'raw_message': raw_message,
                                    'time_created': message.get_time_created().strftime("%B %d, %Y"),
                                    'message_type': message.get_message_type().value}
-                                   
+
                         yield "data: %s\n\n" % json.dumps(payload)
 
         return Response(script(), content_type='text/event-stream')
@@ -92,11 +92,14 @@ def get_messages():
 @app.route('/send', methods=['POST'])
 def send():
     if request.form['type'] == 'text':
-        new_message = TextMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['message'])
+        new_message = TextMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'],
+                                  request.form['message'])
     elif request.form['type'] == 'python':
-        new_message = PythonMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['message'])
+        new_message = PythonMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'],
+                                    request.form['message'])
     elif request.form['type'] == 'r':
-        new_message = RMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['message'])
+        new_message = RMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'],
+                               request.form['message'])
     else:
         raise ValueError('Unrecognised message type in views.py send()')
     buffer = new_message.serialize()
@@ -119,11 +122,11 @@ def upload_image():
             return ''
         # Write the buffer
         encoded = get_blob_from_file(file)
-        new_message = ImageMessage('Bob', 'Bob', datetime.now(), datetime.now(), encoded)
+        new_message = ImageMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'], encoded)
         buffer = new_message.serialize()
         producer.send('test_avro_topic', buffer)
     return ""
 
+
 @app.route('/create_topic', methods=['POST'])
 def create_topic():
-
