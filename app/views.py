@@ -127,7 +127,8 @@ def upload_image():
             return ''
         # Write the buffer
         encoded = get_blob_from_file(file)
-        new_message = ImageMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'], encoded)
+        new_message = ImageMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), encoded,"General")
+        #new_message = ImageMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'], encoded)
         buffer = new_message.serialize()
         producer.send('test_avro_topic', buffer)
     return ""
