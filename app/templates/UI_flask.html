@@ -34,9 +34,9 @@
     if (!!window.EventSource) {
         var source = new EventSource('/get_messages');
         source.onmessage = function(e) {
-            var m = $("#cont1");
             //console.log(e.data);
             var data = JSON.parse(e.data);
+            var m = $("#"+data.topic);
             m.append("<div class='bubble' data-msg-raw='"+data.raw_message+"' data-msg-type='"+data.message_type+"'><p>"+data.message+"</p></div><span class='datestamp dt-alt'><b>"+data.author+"</b>:"+data.time_created+"</span>");
              
              //Needed because MathJax only formats on page load   

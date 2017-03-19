@@ -81,6 +81,7 @@ def get_messages():
                                    'author': message.get_author(),
                                    'raw_message': raw_message,
                                    'time_created': message.get_time_created().strftime("%B %d, %Y"),
+                                   'topic': message.get_topic(),
                                    'message_type': message.get_message_type().value}
 
                         yield "data: %s\n\n" % json.dumps(payload)
@@ -95,11 +96,11 @@ def send():
         new_message = TextMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'],
                                   request.form['message'])
     elif request.form['type'] == 'python':
-        new_message = PythonMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'],
-                                    request.form['message'])
+        new_message = PythonMessage(USERNAME, 'Bob', datetime.now(), datetime.now(),
+                                    request.form['message'], request.form['topic'])
     elif request.form['type'] == 'r':
-        new_message = RMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'],
-                               request.form['message'])
+        new_message = RMessage(USERNAME, 'Bob', datetime.now(), datetime.now(),
+                               request.form['message'], request.form['topic'])
     else:
         raise ValueError('Unrecognised message type in views.py send()')
     buffer = new_message.serialize()
@@ -130,3 +131,5 @@ def upload_image():
 
 @app.route('/create_topic', methods=['POST'])
 def create_topic():
+    buffer = serialiser.serialise_event_message('create_topic', request.form['topic'])
+    producer.send('events', buffer)
