@@ -128,8 +128,15 @@
     </div>
       <script>
     $( "#send-btn" ).click(function() {
-          $.post( "/send", {type:"python",message:MyProject.cmeditor2.getValue()} );
-          console.log("Send:"+MyProject.cmeditor2.getValue());
+          var editor = $('.script-editor.active').attr("data-up");
+          
+          if(editor == "editor1") { //text editor
+              $.post( "/send", {type:"text",message:MyProject.cmeditor1.getValue()} );
+          } else if (editor == "editor2") {
+              $.post( "/send", {type:"python",message:MyProject.cmeditor2.getValue()} );
+          } else if (editor == "editor3") {
+              $.post( "/send", {type:"r",message:MyProject.cmeditor3.getValue()} );
+          }
         });
       $(function() {
     $('#upload-file-btn').click(function() {
