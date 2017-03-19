@@ -12,6 +12,7 @@ from app.messages.message_image import (ImageMessage, get_blob_from_file)
 from datetime import datetime
 import configparser
 import os
+import json
 
 
 @app.route('/')
@@ -51,7 +52,8 @@ def get_messages():
                     for response in partitions[p]:
                         message = deserialiser.deserialise(response.value)
                         all_messages.append(message)
-                        yield "data: %s\n\n" % message.get_html()
+                        payload = {'message': message.get_html(), 'author': message.get_author()}
+                        yield "data: %s\n\n" % json.dumps(payload)
 
         return Response(script(), content_type='text/event-stream')
     return redirect(url_for('static', filename='index.html'))

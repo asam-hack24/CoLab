@@ -9,10 +9,13 @@
         source.onmessage = function(e) {
             var m = $("#messages");
             console.log(e.data)
+            var data = JSON.parse(e.data);
             if (m.text() == 'nothing received yet')
-                m.html('<div>' + e.data + '</div>');
-            else
-                m.append('<div>' + e.data + '</div>');
+                m.html('<div>' + data.message + '</div>');
+            else {
+                m.append('<div>' + data.message + '</div>');
+                m.append('<div>' + data.author + '</div>');
+            }
              
              //Needed because MathJax only formats on page load   
              MathJax.Hub.Queue(["<Types></Types>et", MathJax.Hub, "messages"]);

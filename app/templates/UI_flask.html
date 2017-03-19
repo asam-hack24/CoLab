@@ -35,8 +35,9 @@
         var source = new EventSource('/get_messages');
         source.onmessage = function(e) {
             var m = $("#cont1");
-            console.log(e.data)
-            m.append("<div class='bubble'><p>"+e.data+"</p></div>");
+            console.log(e.data);
+            var data = JSON.parse(e.data);
+            m.append("<div class='bubble'><p>"+data.message+"</p></div>");
              
              //Needed because MathJax only formats on page load   
              MathJax.Hub.Queue(["Typeset", MathJax.Hub, "messages"]);
