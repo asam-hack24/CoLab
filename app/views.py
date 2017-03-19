@@ -129,7 +129,6 @@ def upload_image():
         new_message = ImageMessage(USERNAME, 'Bob', datetime.now(), datetime.now(), request.form['topic'], encoded)
         buffer = new_message.serialize()
         producer.send('test_avro_topic', buffer)
-        convert_to_python_notebook()
     return ""
 
     
@@ -140,34 +139,29 @@ def create_topic():
     return ""
 
 
-# This route will prompt a file download with the csv lines
 @app.route('/download_python_notebook')
-def download():
-    file_object = convert_to_python_notebook()
-    response = make_response(file_object)
-    # This is the key: Set the right header for the response
-    # to be downloaded, instead of just printed on the browser
+def download_python_notebook():
+    string_io = convert_to_notebook(save_python_notebook_to_file, MessageType.R)
+    response = make_response(string_io.getvalue())
     response.headers["Content-Disposition"] = "attachment; filename=my_python_notebook.ipynb"
     return response
 
 
-def convert_to_python_notebook():
+@app.route('/download_r_notebook')
+def download_r_notebook():
+    string_io = convert_to_notebook(save_r_notebook_to_file, MessageType.PYTHON)
+    response = make_response(string_io.getvalue())
+    response.headers["Content-Disposition"] = "attachment; filename=my_r_notebook.ipynb"
+    return response
+
+
+def convert_to_notebook(func, bad_message_type):
     global all_messages
     to_convert = []
 
     for message in all_messages:
-        if message.get_message_type() is not MessageType.R:
+        if message.get_message_type() is not bad_message_type:
             to_convert.append(message)
-    file_object = io.BytesIO()
-    save_python_notebook_to_file(to_convert, file_object)
+    file_object = io.StringIO()
+    func(to_convert, file_object)
     return file_object
-
-# def convert_to_r_notebook():
-#     global all_messages
-#     to_convert = []
-#
-#     for message in all_messages:
-#         if message.get_message_type() is not MessageType.PYTHON:
-#             to_convert.append(message)
-#     full_file_path = "/home/anton/sources/hack24/out_r.ipynb"
-#     save_r_notebook_to_file(to_convert, full_file_path)
