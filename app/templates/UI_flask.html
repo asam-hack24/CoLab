@@ -37,6 +37,21 @@
             //console.log(e.data);
             var data = JSON.parse(e.data);
             var m = $("#"+data.topic);
+            
+            if(m.length == 0) { //If topic doesn't exist for message create it
+                var k = $("#topics");
+                var n = $("#chat-boxes");
+                    n.append("<div class='chat-container' id="+data.name+"></div>")
+                    k.append("<div class='user-profile' data-up="+data.name+"></div><span>"+data.name+"</span>");
+                      $('.user-profile').click(function() {
+                                $('.chat-container').hide();
+                                $('.user-profile.active').removeClass('active');
+                                $('#'+$(this).attr('data-up')).show();
+                                $(this).addClass('active');
+                      });
+
+            }
+            
             m.append("<div class='bubble' data-msg-raw='"+data.raw_message+"' data-msg-type='"+data.message_type+"'><p>"+data.message+"</p></div><span class='datestamp dt-alt'>"+data.time_created+"~<b>"+data.author+"</b></span>");
             
             console.log("Message for: "+data.topic)
@@ -160,7 +175,7 @@
         </div>
 
         <button type="button" id="create-topic-btn" class="btn btn-success">+</button>
-        <input type="text" id="new-topic-name"/>
+        <input type="text" id="new-topic-name" style="position: absolute; right:50px; width:100px;">
         </div>
               
         <div class="chat-box" id='chat-boxes'>
