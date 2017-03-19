@@ -74,10 +74,13 @@ def get_messages():
                     for response in partitions[p]:
                         message = deserialiser.deserialise(response.value)
                         all_messages.append(message)
+                        raw_message = message.get_raw_message()
+                        if isinstance(raw_message, bytes):
+                            raw_message = raw_message.decode('utf8')
                         payload = {'message': message.get_html(), 
                                    'author': message.get_author(),
-                                   'raw_message': message.get_raw_message(),
-                                   'time_created':message.get_time_created().strftime("%B %d, %Y"),
+                                   'raw_message': raw_message,
+                                   'time_created': message.get_time_created().strftime("%B %d, %Y"),
                                    'message_type': message.get_message_type().value}
                                    
                         yield "data: %s\n\n" % json.dumps(payload)
