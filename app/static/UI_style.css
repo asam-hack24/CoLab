@@ -18,13 +18,21 @@ body {
 }*/
 
 
+
 .btn{
 
   position: absolute;
   display: inline-block;
   margin: 0 10px;
-  cursor: pointer
+  cursor: pointer;
+  font-weight:bold;
 }
+
+/*
+.upload-img-btns{
+  color: black;
+  width: 100px;
+}*/
 
 body {
   background: silver;
@@ -42,6 +50,7 @@ body {
   position: relative;
   transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
+
 
 
 .chat-box {
@@ -201,7 +210,7 @@ p {
 .chat-header span {
   font-size: 12px;
   position: absolute;
-  margin: 30px -40px;
+  margin: 25px -40px;
 }
 
 .user-profile {
@@ -218,7 +227,7 @@ p {
 }
 
 .user-profile {
-  background-color: green;
+  background-color: #000080;
 }
 
 .user-profile.active {
@@ -238,14 +247,13 @@ p {
 .editor-header span {
   font-size: 12px;
   position: absolute;
-  margin: 30px -40px;
+  margin: 25px -40px;
 }
 
 .script-editor {
   width: 30px;
   height: 30px;
   display: inline-block;
-  border-radius: 0%;
   background: #DFDFEF;
   margin: 0 10px;
   background-size: cover;

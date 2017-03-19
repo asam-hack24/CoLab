@@ -19,9 +19,6 @@
             showUI('#cont1');
             showUI('#editor1');
             
-            $('.editor-input').hide();
-            $('#editor1').show();
-            
                     
                     $('.script-editor').click(function() {
                         
@@ -71,6 +68,9 @@
             indentUnit: 4,
             matchBrackets: true
         });
+
+             $('.editor-input').hide();
+            $('#editor1').show();
                      
         });
         
