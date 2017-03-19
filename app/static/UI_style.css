@@ -280,11 +280,11 @@ p {
 }
 
 .script-editor:nth-child(5) {
-  background-image: url(./images/R_img.png);
+  background-image: url('./images/R_img.png');
 }
 
 .script-editor:nth-child(7) {
-  background-image: url(./images/plot_img.png);
+  background-image: url('./images/plot_img.png');
 }
 
 .script-editor.active {
@@ -299,7 +299,7 @@ p {
 }
 
 #export-py {
-    background-image: url( '../static/images/python_img.png' );
+    background-image: url( './images/python_img.png' );
     background-size: 20px 20px;
     background-position: center;
     height: 35px;  
@@ -309,7 +309,7 @@ p {
     right: 60px;
 }
 #export-r {
-    background-image: url( '../static/images/r_img.png' );
+    background-image: url( './images/R_img.png' );
     background-size: 20px 20px;
     background-position: center;
     height: 35px;  
