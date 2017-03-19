@@ -21,22 +21,23 @@ class AvroDeserialiser:
                 new_message = TextMessage(message['author'], 'last_author',
                                           datetime.fromtimestamp(message['timestamp']),
                                           datetime.fromtimestamp(0),
+                                          message['topic'],
                                           message['raw_text'])
             elif MessageType(message['type']) is MessageType.PYTHON:
                 new_message = PythonMessage(message['author'], 'last_author',
                                             datetime.fromtimestamp(message['timestamp']),
                                             datetime.fromtimestamp(0),
-                                            message['raw_text'], html=message['html'])
+                                            message['raw_text'], message['topic'], html=message['html'])
             elif MessageType(message['type']) is MessageType.R:
                 new_message = RMessage(message['author'], 'last_author',
-                                            datetime.fromtimestamp(message['timestamp']),
-                                            datetime.fromtimestamp(0),
-                                            message['raw_text'], html=message['html'])
+                                       datetime.fromtimestamp(message['timestamp']),
+                                       datetime.fromtimestamp(0),
+                                       message['raw_text'], message['topic'], html=message['html'])
             elif MessageType(message['type']) is MessageType.IMAGE:
                 new_message = ImageMessage(message['author'], 'last_author',
                                            datetime.fromtimestamp(message['timestamp']),
                                            datetime.fromtimestamp(0),
-                                           message['binary'], html=message['html'])
+                                           message['binary'], message['topic'], html=message['html'])
             else:
                 raise ValueError('Unrecognised message type in AvroSerialise.deserialise')
         return new_message
