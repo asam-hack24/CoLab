@@ -207,14 +207,19 @@ p {
   background: #fff;
   padding: 0.5em;
   padding-bottom: .7em;
-  text-align: center;    
+  text-align: left;    
   height:10%;
 }
 
 .chat-header span {
   font-size: 12px;
+/*  display: block;
+  top:25px;
+  left: 25px;
+  position: absolute;*/
   position: absolute;
-  margin: 25px -40px;
+  margin: 25px -40px; 
+
 }
 
 .user-profile {
@@ -287,22 +292,29 @@ p {
   filter: grayscale(0%);
 }
 
-.script-export {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  background: #DFDFEF;
-  margin: 0 10px;
-  background-size: cover;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  cursor: pointer
+#close-image img {
+    display: block;
+    height: 20px;  
+    width: 20px;
 }
 
-.script-export:nth-child(2) {
-  background-image: url(./images/python_img.png);
+#export-py {
+    background-image: url( '../static/images/python_img.png' );
+    background-size: 20px 20px;
+    background-position: center;
+    height: 35px;  
+    width: 30px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 60px;
 }
-
-.script-export:nth-child(4) {
-  background-image: url(./images/R_img.png);
+#export-r {
+    background-image: url( '../static/images/r_img.png' );
+    background-size: 20px 20px;
+    background-position: center;
+    height: 35px;  
+    width: 30px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 20px;
 }
