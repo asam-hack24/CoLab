@@ -12,12 +12,12 @@ def get_blob_from_file(file_handle):
 
 
 class ImageMessage(Message):
-    def __init__(self, author, last_author, time_created, time_last_modified, message, html=None):
+    def __init__(self, author, last_author, time_created, time_last_modified, message, topic, html=None):
         if not isinstance(message, bytes):
             raise RuntimeError("The message has to be bytes")
         super(ImageMessage, self).__init__(author=author, last_author=last_author,
                                            time_created=time_created, time_last_modified=time_last_modified,
-                                           message=message, html=html)
+                                           message=message, topic=topic, html=html)
         self._message_type = MessageType.IMAGE
 
     def serialize(self):

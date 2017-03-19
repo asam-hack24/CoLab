@@ -119,20 +119,36 @@
         </div>
     </div>
 
-    <div class = "col-md-6"> 
-          
-          <div class="chat-header">
-          <div class="user-profile active" data-up='cont1'></div>
-          <span>Erza</span>
-          <div class="user-profile" data-up='cont2'></div>
-          <span>Nastu</span>
-          <div class="user-profile" data-up='cont3'></div>
-          <span>Lucy</span>
+    <div class = "col-md-6">
 
-          <button type="button" class="btn btn-success">+</button>
+        <div class="chat-header"  id='topics'>
+
+        <div class="user-profile active" data-up='cont1'></div>
+        <span>General</span>
+
+        <script>
+        if (!!window.EventSource) {
+            var source = new EventSource('/get_events');
+            source.onmessage = function(e) {
+                var m = $("#topics");
+                var n = $("#chat-boxes");
+                console.log(e.data);
+                var data = JSON.parse(e.data);
+                if (data.event_type == 'create_topic') {
+                    n.append("<div class='chat-container' id=data.name></div>")
+                    m.append("<div class='user-profile' data-up=data.name></div><span>data.name</span>");
+                }
+            }
+            source.onopen = function(e) {
+                console.log('onopen events');
+            }
+        }
+        </script>
+
+        <button type="button" id="create-topic-btn" class="btn btn-success">+</button>
         </div>
               
-        <div class="chat-box">
+        <div class="chat-box" id='chat-boxes'>
 
             <div class="chat-container active" id='cont1'>
             </div>
@@ -164,6 +180,9 @@
           } else if (editor == "editor3") {
               $.post( "/send", {type:"r",message:MyProject.cmeditor3.getValue()} );
           }
+        });
+        $( "#create-topic-btn" ).click(function() {
+          $.post( "/create_topic", {name:"placeholder"});
         });
       $(function() {
     $('#upload-file-btn').click(function() {

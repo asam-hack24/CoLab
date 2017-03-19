@@ -12,7 +12,7 @@ class MessageType(Enum):
 
 
 class Message(metaclass=ABCMeta):
-    def __init__(self, author, last_author, time_created, time_last_modified, message, html=None):
+    def __init__(self, author, last_author, time_created, time_last_modified, message, topic, html=None):
         if not isinstance(time_created, datetime):
             raise ValueError("time_stamp: Expected a datetime object, got {}".format(type(time_created)))
         if not isinstance(time_last_modified, datetime):
@@ -30,6 +30,7 @@ class Message(metaclass=ABCMeta):
         self._html_message = html
         self._message_type = None
         self._serializer = AvroSerialiser()
+        self._topic = topic
 
     @abstractmethod
     def serialize(self):
@@ -61,3 +62,6 @@ class Message(metaclass=ABCMeta):
 
     def get_raw_message(self):
         return self._message
+
+    def get_topic(self):
+        return self._topic

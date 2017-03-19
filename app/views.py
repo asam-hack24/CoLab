@@ -123,3 +123,7 @@ def upload_image():
         buffer = new_message.serialize()
         producer.send('test_avro_topic', buffer)
     return ""
+
+@app.route('/create_topic', methods=['POST'])
+def create_topic():
+

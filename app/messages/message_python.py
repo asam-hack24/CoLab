@@ -4,10 +4,10 @@ import re
 
 
 class PythonMessage(Message):
-    def __init__(self, author, last_author, time_created, time_last_modified, message, html=None):
+    def __init__(self, author, last_author, time_created, time_last_modified, message, topic, html=None):
         super(PythonMessage, self).__init__(author=author, last_author=last_author,
                                             time_created=time_created, time_last_modified=time_last_modified,
-                                            message=message, html=html)
+                                            message=message, topic=topic, html=html)
         self._message_type = MessageType.PYTHON
 
     def serialize(self):

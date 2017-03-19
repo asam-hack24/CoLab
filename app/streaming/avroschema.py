@@ -8,7 +8,8 @@ schema = {
         {'name': 'raw_text', 'type': ['null', 'string'], "default": None},
         {'name': 'binary', 'type': ['null', 'bytes'], "default": None},
         {'name': 'html', 'type': 'string'},
-        {'name': 'timestamp', 'type': 'float'}
+        {'name': 'timestamp', 'type': 'float'},
+        {'name': 'topic', 'type': 'string'}
     ],
 }
 

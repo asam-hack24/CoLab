@@ -2,10 +2,10 @@ from app.messages.message import (Message, MessageType)
 
 
 class TextMessage(Message):
-    def __init__(self, author, last_author, time_created, time_last_modified, message):
+    def __init__(self, author, last_author, time_created, time_last_modified, topic, message):
         super(TextMessage, self).__init__(author=author, last_author=last_author,
                                           time_created=time_created, time_last_modified=time_last_modified,
-                                          message=message)
+                                          topic=topic, message=message)
         self._message_type = MessageType.TEXT
 
     def serialize(self):

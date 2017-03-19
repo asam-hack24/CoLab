@@ -18,6 +18,7 @@ class AvroSerialiser:
                                  'type': message.get_message_type().value,
                                  'raw_text': message.get_raw_message(),
                                  'timestamp': message.get_time_created().timestamp(),
+                                 'topic': message.get_topic(),
                                  'html': message.get_html()}])
         return buffer.getvalue()
 
@@ -28,6 +29,7 @@ class AvroSerialiser:
                                  'type': message.get_message_type().value,
                                  'binary': message.get_raw_message(),
                                  'timestamp': message.get_time_created().timestamp(),
+                                 'topic': message.get_topic(),
                                  'html': message.get_html()}])
         return buffer.getvalue()
 
