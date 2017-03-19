@@ -24,12 +24,12 @@ class ScriptExecutor(metaclass=ABCMeta):
         body, _ = html_exporter.from_notebook_node(nb)
 
         # Extract the result part of the html
-        output = ScriptExecutor.extract_output(body)
+        output = ScriptExecutor.extract_output(body, kernel)
 
         return output
 
     @staticmethod
-    def extract_output(html_string):
+    def extract_output(html_string, kernel):
         # Remove the first bit
         cleaned_record = ""
         number_of_lines = 0
@@ -46,6 +46,11 @@ class ScriptExecutor(metaclass=ABCMeta):
         lines = cleaned_record.splitlines()
         lines = lines[1:-3]
         cleaned_record = ""
+
+        print(kernel)
+        if kernel == "ir":
+            ScriptExecutor._clean_r(lines)
+
         remove_newlines = False
         for line in lines:
             if line.startswith('<img'):
@@ -57,3 +62,11 @@ class ScriptExecutor(metaclass=ABCMeta):
                 cleaned_record += '\n'
 
         return cleaned_record
+
+    @staticmethod
+    def _clean_r(lines):
+        for index in range(len(lines)):
+            line = lines[index]
+            if line.startswith("<pre>[1]"):
+                lines[index] = line.replace("<pre>[1]", "<pre>")
+
