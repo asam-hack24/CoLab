@@ -15,7 +15,7 @@ We made a [YouTube video](https://youtu.be/TD3FUoyO5UY) for the hackathon entry.
 
 Improving usability is being worked on but the following instructions can be used to test the software in its current state.
 
-Requires Python >3.5 and the pacakges listed in `requirements.txt` which can be installed with `pip` using
+Requires Python >3.5 and the packages listed in `requirements.txt` which can be installed with `pip` using
 ```
 pip install -r requirements.txt
 ```
