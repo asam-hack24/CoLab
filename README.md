@@ -1,6 +1,7 @@
 # CoLab - Messaging for scientists
 
 CoLab is Slack-like collaboration tool for scientists.
+This repository contains the original concept developed at the [Hack24](http://www.hack24.co.uk/) hackathon, development of a full application is ongoing here: https://github.com/colab-chat/colab-server
 
 Current key features:
 - Persistent chat channels
